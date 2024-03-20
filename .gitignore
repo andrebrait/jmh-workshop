@@ -23,3 +23,13 @@ gradle-app.setting
 # IntelliJ IDEA
 .idea
 *.iml
+
+# MacOS
+**/.DS_Store
+
+# User configuration
+**/.idea/
+**/.vscode/
+
+# stack dumps
+/java_pid*.hprof
