@@ -8,7 +8,7 @@ package com.github.andrebrait.workshops.jmh.framework;
  * benchmark, as the time measurement can be expensive compared to the benchmarked code and thus could mask
  * its performance characteristics.
  *
- * <p><a href=https://www.oracle.com/technical-resources/articles/java/architect-benchmarking.html>Reference</a>
+ * <p>Reference: <a href="https://www.oracle.com/technical-resources/articles/java/architect-benchmarking.html">Avoiding Benchmarking Pitfalls on the JVM</a>.
  */
 public final class Benchmark {
 
