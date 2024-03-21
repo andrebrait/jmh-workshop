@@ -11,7 +11,7 @@ import com.github.andrebrait.workshops.jmh.framework.SystemInfoUtils;
  * "Naive" benchmark with a slightly more complex class hierarchy
  * and direct object usage to avoid using {@link Runnable}.
  *
- * <p>Results:
+ * <p>Results (Windows):
  *
  * <pre>
  *  JVM info:
@@ -54,6 +54,51 @@ import com.github.andrebrait.workshops.jmh.framework.SystemInfoUtils;
  *  579802 ops/ms  |
  *  577787 ops/ms  |
  *  [ ~577993 ops/ms ]
+ * </pre>
+ *
+ * <p>Results (macOS):
+ *
+ * <pre>
+ *  JVM info:
+ *  	Name: OpenJDK 64-Bit Server VM
+ *  	Vendor: Eclipse Adoptium
+ *  	Version: 17.0.9+9
+ *  	Architecture: aarch64
+ *
+ *  CPU info:
+ *  	Apple M1 Pro
+ *  	 1 physical CPU package(s)
+ *  	 10 physical CPU core(s) (8 performance + 2 efficiency)
+ *  	 10 logical CPU(s)
+ *  	Identifier: Apple Inc. Family 0x1b588bb3 Model 0 Stepping 0
+ *  	Microarchitecture: ARM64 SoC: Firestorm + Icestorm
+ *
+ *  OS info:
+ *  	Apple macOS 14.4 (Sonoma) build 23E214
+ *
+ *  Running: point_accurate
+ *  44360057 ops/ms  (warmup) |
+ *  44886132 ops/ms  (warmup) |
+ *  44760530 ops/ms  |
+ *  44873045 ops/ms  |
+ *  44616395 ops/ms  |
+ *  [ ~44749990 ops/ms ]
+ *
+ *  Running: point_fast
+ *  1585122 ops/ms  (warmup) |
+ *  1592687 ops/ms  (warmup) |
+ *  1591147 ops/ms  |
+ *  1588990 ops/ms  |
+ *  1585535 ops/ms  |
+ *  [ ~1588557 ops/ms ]
+ *
+ *  Running: point_super_fast
+ *  481960 ops/ms  (warmup) |
+ *  481537 ops/ms  (warmup) |
+ *  483812 ops/ms  |
+ *  481360 ops/ms  |
+ *  481165 ops/ms  |
+ *  [ ~482112 ops/ms ]
  * </pre>
  */
 public final class D_PointDirectBenchmark {

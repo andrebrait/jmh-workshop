@@ -7,7 +7,7 @@ import static com.github.andrebrait.workshops.jmh.framework.Benchmark.*;
 /**
  * "Naive" benchmark with just static methods.
  *
- * <p>Results:
+ * <p>Results (Windows):
  *
  * <pre>
  *  JVM info:
@@ -50,6 +50,51 @@ import static com.github.andrebrait.workshops.jmh.framework.Benchmark.*;
  *  663707 ops/ms  |
  *  663715 ops/ms  |
  *  [ ~662909 ops/ms ]
+ * </pre>
+ *
+ * <p>Results (macOS):
+ *
+ * <pre>
+ *  JVM info:
+ *  	Name: OpenJDK 64-Bit Server VM
+ *  	Vendor: Eclipse Adoptium
+ *  	Version: 17.0.9+9
+ *  	Architecture: aarch64
+ *
+ *  CPU info:
+ *  	Apple M1 Pro
+ *  	 1 physical CPU package(s)
+ *  	 10 physical CPU core(s) (8 performance + 2 efficiency)
+ *  	 10 logical CPU(s)
+ *  	Identifier: Apple Inc. Family 0x1b588bb3 Model 0 Stepping 0
+ *  	Microarchitecture: ARM64 SoC: Firestorm + Icestorm
+ *
+ *  OS info:
+ *  	Apple macOS 14.4 (Sonoma) build 23E214
+ *
+ *  Running: distance
+ *  44105567 ops/ms  (warmup) |
+ *  44689102 ops/ms  (warmup) |
+ *  44816620 ops/ms  |
+ *  44767952 ops/ms  |
+ *  44856765 ops/ms  |
+ *  [ ~44813779 ops/ms ]
+ *
+ *  Running: constant
+ *  1587840 ops/ms  (warmup) |
+ *  1580775 ops/ms  (warmup) |
+ *  1583165 ops/ms  |
+ *  1590597 ops/ms  |
+ *  1595805 ops/ms  |
+ *  [ ~1589855 ops/ms ]
+ *
+ *  Running: nothing
+ *  463597 ops/ms  (warmup) |
+ *  461705 ops/ms  (warmup) |
+ *  464330 ops/ms  |
+ *  464565 ops/ms  |
+ *  462620 ops/ms  |
+ *  [ ~463838 ops/ms ]
  * </pre>
  */
 public final class A_RawMethodBenchmark {
