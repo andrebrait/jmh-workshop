@@ -1,44 +1,39 @@
-subprojects {
-    apply plugin: 'java'
-    apply plugin: 'idea'
-
-    sourceCompatibility = 17
-    targetCompatibility = 17
-
-    sourceSets.main {
-        java.srcDirs = ['src/main/java']
-    }
-
-    sourceSets.test {
-        java.srcDirs = ['src/test/java']
-    }
-
-    // https://docs.gradle.org/current/userguide/building_java_projects.html#sec:java_source_sets
-    sourceSets {
-        jmh {
-            java.srcDirs = ['src/jmh/java']
-            resources.srcDirs = ['src/jmh/resources']
-            compileClasspath += sourceSets.main.runtimeClasspath
-        }
-    }
-
-    dependencies {
-        jmhImplementation 'org.openjdk.jmh:jmh-core:1.37'
-        jmhAnnotationProcessor 'org.openjdk.jmh:jmh-generator-annprocess:1.37'
-    }
-
-    // https://docs.gradle.org/current/dsl/org.gradle.api.tasks.JavaExec.html
-    task jmh(type: JavaExec, dependsOn: jmhClasses) {
-        main = 'org.openjdk.jmh.Main'
-        classpath = sourceSets.jmh.compileClasspath + sourceSets.jmh.runtimeClasspath
-
-        // To enable the built-in stacktrace sampling profiler
-        // args = ['-prof', 'stack']
-
-        // To enable the built-in GC sampling profiler
-        // args = ['-prof', 'gc']
-    }
-
-    // to make sure benchmarks always get compiled
-    classes.finalizedBy(jmhClasses)
+plugins {
+    id 'java'
+    id 'idea'
 }
+
+group 'com.github.andrebrait'
+version '1.0.0-SNAPSHOT'
+
+sourceCompatibility = 17
+targetCompatibility = 17
+
+sourceSets.main {
+    java.srcDirs = ['src/main/java']
+}
+
+sourceSets.test {
+    java.srcDirs = ['src/test/java']
+}
+
+// https://docs.gradle.org/current/userguide/building_java_projects.html#sec:java_source_sets
+sourceSets {
+    jmh {
+        java.srcDirs = ['src/jmh/java']
+        resources.srcDirs = ['src/jmh/resources']
+        compileClasspath += sourceSets.main.runtimeClasspath
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    jmhImplementation 'org.openjdk.jmh:jmh-core:1.37'
+    jmhAnnotationProcessor 'org.openjdk.jmh:jmh-generator-annprocess:1.37'
+}
+
+// to make sure benchmarks always get compiled
+classes.finalizedBy(jmhClasses)
