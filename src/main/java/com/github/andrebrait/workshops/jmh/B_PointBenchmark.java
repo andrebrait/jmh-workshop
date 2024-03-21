@@ -4,6 +4,7 @@ import com.github.andrebrait.workshops.jmh.domain.AccuratePoint;
 import com.github.andrebrait.workshops.jmh.domain.FastPoint;
 import com.github.andrebrait.workshops.jmh.domain.RawCoordinate;
 import com.github.andrebrait.workshops.jmh.domain.SuperFastPoint;
+import com.github.andrebrait.workshops.jmh.framework.SystemInfoUtils;
 
 import static com.github.andrebrait.workshops.jmh.framework.Benchmark.*;
 
@@ -11,13 +12,6 @@ import static com.github.andrebrait.workshops.jmh.framework.Benchmark.*;
  * "Naive" benchmark with a slightly more complex class hierarchy
  */
 public final class B_PointBenchmark {
-
-    public static void main(String[] args) {
-        bench_accurate();
-        bench_accurate_raw();
-        bench_fast();
-        bench_super_fast();
-    }
 
     private static void bench_accurate() {
         bench(
@@ -57,5 +51,13 @@ public final class B_PointBenchmark {
                 WARMUP,
                 REPEAT,
                 () -> new SuperFastPoint(0, 0).distance(new SuperFastPoint(10, 10)));
+    }
+
+    public static void main(String[] args) {
+        SystemInfoUtils.printSystemInfo();
+        bench_accurate();
+        bench_accurate_raw();
+        bench_fast();
+        bench_super_fast();
     }
 }
