@@ -18,7 +18,10 @@ import static com.github.andrebrait.workshops.jmh.utils.InputUtils.select;
  */
 public final class SuperDuperBenchmark_Fix5 {
 
-    // if this is unboxed, it'll be optimized away
+    /*
+     * If we make this a primitive, some crazy optimization is gonna kick in!
+     * For allan, this gets reverted if the loop unrolling is prevented.
+     */
     private static Double last = 0.0d;
 
     public static void main(String[] args) {

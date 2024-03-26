@@ -2,10 +2,15 @@ package com.github.andrebrait.workshops.jmh.presentation;
 
 public final class Solutions {
 
+    /*
+     * Looping 18 times prevents some optimizations. Without the sqrt, this limit is about 20.
+     *
+     * This leads me to believe this is related to a combination of unrolling + escape analysis
+     * kicking in when the loop is unrolled, leading to the real method not being executed and
+     * being optimized away.
+     */
     public static double allan(double x1, double y1, double x2, double y2) {
         double result = 0;
-        // looping 18 times prevents some optimizations
-        // without the sqrt, this limit is about 20
         for (int i = 0; i < 10; i++) {
             double dx = x2 - x1 - result / 10.0d;
             double dy = y2 - y1 - result / 12.0d;
