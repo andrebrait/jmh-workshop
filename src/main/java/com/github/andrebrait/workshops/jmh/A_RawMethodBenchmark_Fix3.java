@@ -5,7 +5,7 @@ import java.util.concurrent.ThreadLocalRandom;
 import java.util.function.Consumer;
 
 import static com.github.andrebrait.workshops.jmh.framework.BenchmarkFramework.*;
-import static com.github.andrebrait.workshops.jmh.framework.InputUtils.select;
+import static com.github.andrebrait.workshops.jmh.utils.InputUtils.select;
 
 /**
  * "Naive" benchmark with just static methods which can only execute one test at a time and

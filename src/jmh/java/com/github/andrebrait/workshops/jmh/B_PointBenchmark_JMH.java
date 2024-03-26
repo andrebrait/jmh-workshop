@@ -72,7 +72,7 @@ public class B_PointBenchmark_JMH {
                 //.addProfiler("perfasm") // for Linux
                 //.addProfiler("dtraceasm") // for macOS (required root)
                 //.jvmArgsAppend("-XX:LoopUnrollLimit=1") // simplify assembly, keep unrolling to a minimum
-                //.jvmArgsAppend("-XX:-TieredCompilation") // enforce tiered compilation with the final optimizing compiler                .include(regex)
+                //.jvmArgsAppend("-XX:-TieredCompilation") // enforce tiered compilation with the final optimizing compiler
                 .include(regex).build();
         Runner runner = new Runner(options);
         runner.run();

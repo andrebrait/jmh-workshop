@@ -1,20 +1,27 @@
-package com.github.andrebrait.workshops.jmh;
+package com.github.andrebrait.workshops.jmh.presentation;
+
+import com.github.andrebrait.workshops.jmh.framework.BenchmarkFramework;
 
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.function.Consumer;
+import java.util.function.Function;
 
 import static com.github.andrebrait.workshops.jmh.framework.BenchmarkFramework.*;
 import static com.github.andrebrait.workshops.jmh.utils.InputUtils.select;
 
 /**
- * "Naive" benchmark with just static methods which can only execute one test at a time and has random parameters.
+ * "Naive" benchmark with just static methods which can only execute one test at a time and
+ * has "random" parameters, with the result being consumed in a "blackhole" so the compiler
+ * can't remove the invocation altogether.
  */
-public final class A_RawMethodBenchmark_Fix2 {
+public final class SuperDuperBenchmark_Fix4 {
 
     enum Benchmark {
         distance, constant
     }
+
+    private static long cumulativeResult = 0;
 
     private record Operands(double x1, double y1, double x2, double y2) {
         static Operands random() {
@@ -40,18 +47,20 @@ public final class A_RawMethodBenchmark_Fix2 {
     public static void main(String[] args) {
         //SystemInfoUtils.printSystemInfo();
         Benchmark benchmark = select("Select a benchmark to run:", Benchmark.class);
-        Consumer<Operands> benchmarkMethod = switch (benchmark) {
+        Function<Operands, Double> benchmarkMethod = switch (benchmark) {
             case distance -> o -> distance(o.x1(), o.y1(), o.x2(), o.y2());
             case constant -> o -> constant(o.x1(), o.y1(), o.x2(), o.y2());
         };
-        bench(
+        Consumer<Double> blackhole = r -> cumulativeResult += r.longValue();
+        BenchmarkFramework.bench(
                 benchmark.name(),
                 RUN_MILLIS,
                 LOOP,
                 WARMUP,
                 REPEAT,
                 Operands::random,
+                blackhole,
                 benchmarkMethod);
+        System.out.printf("Cumulative result: %d%n", cumulativeResult);
     }
-
 }

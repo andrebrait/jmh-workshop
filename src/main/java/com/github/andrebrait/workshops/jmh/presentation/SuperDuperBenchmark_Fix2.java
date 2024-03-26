@@ -1,4 +1,4 @@
-package com.github.andrebrait.workshops.jmh;
+package com.github.andrebrait.workshops.jmh.presentation;
 
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
@@ -10,7 +10,7 @@ import static com.github.andrebrait.workshops.jmh.utils.InputUtils.select;
 /**
  * "Naive" benchmark with just static methods which can only execute one test at a time and has random parameters.
  */
-public final class A_RawMethodBenchmark_Fix2 {
+public final class SuperDuperBenchmark_Fix2 {
 
     enum Benchmark {
         distance, constant

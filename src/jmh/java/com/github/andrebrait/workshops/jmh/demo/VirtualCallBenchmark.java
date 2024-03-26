@@ -67,9 +67,17 @@ public class VirtualCallBenchmark {
         }
     }
 
-    //@CompilerControl(CompilerControl.Mode.PRINT)
+    // suppress compilation for this method, always interpret the bytecode
+    @CompilerControl(CompilerControl.Mode.EXCLUDE)
     @Benchmark
-    public void test() {
+    public void test_interpreted() {
+        for (A a : as) {
+            a.m();
+        }
+    }
+
+    @Benchmark
+    public void test_compiled() {
         for (A a : as) {
             a.m();
         }

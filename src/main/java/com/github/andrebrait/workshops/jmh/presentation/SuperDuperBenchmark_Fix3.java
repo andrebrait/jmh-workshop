@@ -1,4 +1,4 @@
-package com.github.andrebrait.workshops.jmh;
+package com.github.andrebrait.workshops.jmh.presentation;
 
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
@@ -8,13 +8,16 @@ import static com.github.andrebrait.workshops.jmh.framework.BenchmarkFramework.*
 import static com.github.andrebrait.workshops.jmh.utils.InputUtils.select;
 
 /**
- * "Naive" benchmark with just static methods which can only execute one test at a time and has random parameters.
+ * "Naive" benchmark with just static methods which can only execute one test at a time and
+ * has "random" parameters and some added state which may mutate the class but does not
+ * consume the result of the operation.
  */
-public final class A_RawMethodBenchmark_Fix2 {
-
+public final class SuperDuperBenchmark_Fix3 {
     enum Benchmark {
         distance, constant
     }
+
+    private static long executions;
 
     private record Operands(double x1, double y1, double x2, double y2) {
         static Operands random() {
@@ -25,6 +28,10 @@ public final class A_RawMethodBenchmark_Fix2 {
                     random.nextDouble(100),
                     random.nextDouble(100));
         }
+    }
+
+    private static void count() {
+        executions++;
     }
 
     private static double distance(double x1, double y1, double x2, double y2) {
@@ -41,8 +48,14 @@ public final class A_RawMethodBenchmark_Fix2 {
         //SystemInfoUtils.printSystemInfo();
         Benchmark benchmark = select("Select a benchmark to run:", Benchmark.class);
         Consumer<Operands> benchmarkMethod = switch (benchmark) {
-            case distance -> o -> distance(o.x1(), o.y1(), o.x2(), o.y2());
-            case constant -> o -> constant(o.x1(), o.y1(), o.x2(), o.y2());
+            case distance -> o -> {
+                distance(o.x1(), o.y1(), o.x2(), o.y2());
+                count();
+            };
+            case constant -> o -> {
+                constant(o.x1(), o.y1(), o.x2(), o.y2());
+                count();
+            };
         };
         bench(
                 benchmark.name(),
@@ -52,6 +65,6 @@ public final class A_RawMethodBenchmark_Fix2 {
                 REPEAT,
                 Operands::random,
                 benchmarkMethod);
+        System.out.printf("Executions: %df%n", executions);
     }
-
 }

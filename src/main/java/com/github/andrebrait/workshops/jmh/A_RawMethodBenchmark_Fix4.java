@@ -8,7 +8,7 @@ import java.util.function.Consumer;
 import java.util.function.Function;
 
 import static com.github.andrebrait.workshops.jmh.framework.BenchmarkFramework.*;
-import static com.github.andrebrait.workshops.jmh.framework.InputUtils.select;
+import static com.github.andrebrait.workshops.jmh.utils.InputUtils.select;
 
 /**
  * "Naive" benchmark with just static methods which can only execute one test at a time and

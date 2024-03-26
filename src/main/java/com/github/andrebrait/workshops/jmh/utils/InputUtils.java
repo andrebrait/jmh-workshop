@@ -1,4 +1,4 @@
-package com.github.andrebrait.workshops.jmh.framework;
+package com.github.andrebrait.workshops.jmh.utils;
 
 import java.util.Scanner;
 
