@@ -17,14 +17,15 @@ public final class D_PointDirectBenchmark {
     private static final int LOOP = 10_000;
 
     /**
-     * A copy of {@link BenchmarkFramework#bench(String, long, int, int, int, Runnable)}
+     * A copy of {@link BenchmarkFramework#bench(String, long, int, int, int, com.github.andrebrait.workshops.jmh.framework.BenchRunnable)}
      * that skips the creation of a Runnable.
      */
     private static void bench(
             String name, long runMillis, int loop, int warmup, int repeat, Point point) {
         System.out.printf("Running: %s%n", name);
         int max = repeat + warmup;
-        long average = 0L;
+        long averageThroughput = 0L;
+        double averageTimePerOp = 0.0d;
         for (int i = 0; i < max; i++) {
             long numOperations = 0L;
             long duration = 0L;
@@ -37,14 +38,21 @@ public final class D_PointDirectBenchmark {
                 duration = System.currentTimeMillis() - start;
             }
             long throughput = numOperations / duration;
+            double timePerOp = (duration * 1E6) / numOperations;
             boolean benchRun = i >= warmup;
             if (benchRun) {
-                average = average + throughput;
+                averageThroughput += throughput;
+                averageTimePerOp += timePerOp;
             }
-            System.out.printf("%d ops/ms %s%n", throughput, (!benchRun ? " (warmup) | " : " | "));
+            System.out.printf(
+                    "%d ops/ms (%.2f ns/op)%s%n",
+                    throughput,
+                    timePerOp,
+                    (!benchRun ? " (warmup) | " : " | "));
         }
-        average = average / repeat;
-        System.out.printf("[ ~%d ops/ms ]%n%n", average);
+        averageThroughput /= repeat;
+        averageTimePerOp /= repeat;
+        System.out.printf("[ ~%d ops/ms (%.2f ns/op)]%n%n", averageThroughput, averageTimePerOp);
     }
 
     public static void main(String[] args) {

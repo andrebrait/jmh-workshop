@@ -38,7 +38,8 @@ public final class BenchmarkFramework {
             BenchRunnable benchmark) {
         System.out.printf("Running: %s%n", name);
         int max = repeat + warmup;
-        long average = 0L;
+        long averageThroughput = 0L;
+        double averageTimePerOp = 0.0d;
         for (int i = 0; i < max; i++) {
             long numOperations = 0L;
             long duration = 0L;
@@ -51,14 +52,21 @@ public final class BenchmarkFramework {
                 duration = System.currentTimeMillis() - start;
             }
             long throughput = numOperations / duration;
+            double timePerOp = (duration * 1E6) / numOperations;
             boolean benchRun = i >= warmup;
             if (benchRun) {
-                average = average + throughput;
+                averageThroughput += throughput;
+                averageTimePerOp += timePerOp;
             }
-            System.out.printf("%d ops/ms %s%n", throughput, (!benchRun ? " (warmup) | " : " | "));
+            System.out.printf(
+                    "%d ops/ms (%.2f ns/op)%s%n",
+                    throughput,
+                    timePerOp,
+                    (!benchRun ? " (warmup) | " : " | "));
         }
-        average = average / repeat;
-        System.out.printf("[ ~%d ops/ms ]%n%n", average);
+        averageThroughput /= repeat;
+        averageTimePerOp /= repeat;
+        System.out.printf("[ ~%d ops/ms (%.2f ns/op)]%n%n", averageThroughput, averageTimePerOp);
     }
 
     /**
@@ -83,7 +91,8 @@ public final class BenchmarkFramework {
             BenchConsumer<A> benchmark) {
         System.out.printf("Running: %s%n", name);
         int max = repeat + warmup;
-        long average = 0L;
+        long averageThroughput = 0L;
+        double averageTimePerOp = 0.0d;
         for (int i = 0; i < max; i++) {
             A args = argsSupplier.get();
             long numOperations = 0L;
@@ -97,14 +106,21 @@ public final class BenchmarkFramework {
                 duration = System.currentTimeMillis() - start;
             }
             long throughput = numOperations / duration;
+            double timePerOp = (duration * 1E6) / numOperations;
             boolean benchRun = i >= warmup;
             if (benchRun) {
-                average = average + throughput;
+                averageThroughput += throughput;
+                averageTimePerOp += timePerOp;
             }
-            System.out.printf("%d ops/ms %s%n", throughput, (!benchRun ? " (warmup) | " : " | "));
+            System.out.printf(
+                    "%d ops/ms (%.2f ns/op)%s%n",
+                    throughput,
+                    timePerOp,
+                    (!benchRun ? " (warmup) | " : " | "));
         }
-        average = average / repeat;
-        System.out.printf("[ ~%d ops/ms ]%n%n", average);
+        averageThroughput /= repeat;
+        averageTimePerOp /= repeat;
+        System.out.printf("[ ~%d ops/ms (%.2f ns/op)]%n%n", averageThroughput, averageTimePerOp);
     }
 
     /**
@@ -132,7 +148,8 @@ public final class BenchmarkFramework {
             BenchFunction<A, R> benchmark) {
         System.out.printf("Running: %s%n", name);
         int max = repeat + warmup;
-        long average = 0L;
+        long averageThroughput = 0L;
+        double averageTimePerOp = 0.0d;
         for (int i = 0; i < max; i++) {
             A args = argsSupplier.get();
             long numOperations = 0L;
@@ -146,14 +163,21 @@ public final class BenchmarkFramework {
                 duration = System.currentTimeMillis() - start;
             }
             long throughput = numOperations / duration;
+            double timePerOp = (duration * 1E6) / numOperations;
             boolean benchRun = i >= warmup;
             if (benchRun) {
-                average = average + throughput;
+                averageThroughput += throughput;
+                averageTimePerOp += timePerOp;
             }
-            System.out.printf("%d ops/ms %s%n", throughput, (!benchRun ? " (warmup) | " : " | "));
+            System.out.printf(
+                    "%d ops/ms (%.2f ns/op)%s%n",
+                    throughput,
+                    timePerOp,
+                    (!benchRun ? " (warmup) | " : " | "));
         }
-        average = average / repeat;
-        System.out.printf("[ ~%d ops/ms ]%n%n", average);
+        averageThroughput /= repeat;
+        averageTimePerOp /= repeat;
+        System.out.printf("[ ~%d ops/ms (%.2f ns/op)]%n%n", averageThroughput, averageTimePerOp);
     }
 
     /**
@@ -180,7 +204,8 @@ public final class BenchmarkFramework {
             BenchToDoubleFunction<A> benchmark) {
         System.out.printf("Running: %s%n", name);
         int max = repeat + warmup;
-        long average = 0L;
+        long averageThroughput = 0L;
+        double averageTimePerOp = 0.0d;
         for (int i = 0; i < max; i++) {
             A args = argsSupplier.get();
             long numOperations = 0L;
@@ -194,14 +219,21 @@ public final class BenchmarkFramework {
                 duration = System.currentTimeMillis() - start;
             }
             long throughput = numOperations / duration;
+            double timePerOp = (duration * 1E6) / numOperations;
             boolean benchRun = i >= warmup;
             if (benchRun) {
-                average = average + throughput;
+                averageThroughput += throughput;
+                averageTimePerOp += timePerOp;
             }
-            System.out.printf("%d ops/ms %s%n", throughput, (!benchRun ? " (warmup) | " : " | "));
+            System.out.printf(
+                    "%d ops/ms (%.2f ns/op)%s%n",
+                    throughput,
+                    timePerOp,
+                    (!benchRun ? " (warmup) | " : " | "));
         }
-        average = average / repeat;
-        System.out.printf("[ ~%d ops/ms ]%n%n", average);
+        averageThroughput /= repeat;
+        averageTimePerOp /= repeat;
+        System.out.printf("[ ~%d ops/ms (%.2f ns/op)]%n%n", averageThroughput, averageTimePerOp);
     }
 
     private BenchmarkFramework() {
