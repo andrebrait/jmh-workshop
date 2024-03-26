@@ -19,7 +19,9 @@ import static com.github.andrebrait.workshops.jmh.utils.InputUtils.select;
 public final class SuperDuperBenchmark_Fix4 {
 
     /*
-     * If we make this a primitive, some crazy optimization is gonna kick in! (except allan)
+     * If we make this a primitive, some crazy optimization is gonna kick in!
+     * (Except allan, but that's perhaps because it's too expensive for the
+     * difference be observable here)
      */
     private static Double last = 0.0d;
 
