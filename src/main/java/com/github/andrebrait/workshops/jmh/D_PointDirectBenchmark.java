@@ -6,6 +6,8 @@ import com.github.andrebrait.workshops.jmh.framework.BenchmarkFramework;
 /**
  * "Naive" benchmark with a slightly more complex class hierarchy
  * and direct object usage to avoid using {@link Runnable}.
+ *
+ * <p>This demonstrates the problem does not lie in using Runnables or other functional interfaces.
  */
 public final class D_PointDirectBenchmark {
 
@@ -15,7 +17,8 @@ public final class D_PointDirectBenchmark {
     private static final int LOOP = 10_000;
 
     /**
-     * A copy of {@link BenchmarkFramework#bench(String, long, int, int, int, Runnable)} that skips the creation of a Runnable.
+     * A copy of {@link BenchmarkFramework#bench(String, long, int, int, int, Runnable)}
+     * that skips the creation of a Runnable.
      */
     private static void bench(
             String name, long runMillis, int loop, int warmup, int repeat, Point point) {
