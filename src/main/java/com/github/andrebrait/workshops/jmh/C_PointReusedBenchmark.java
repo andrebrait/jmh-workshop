@@ -1,121 +1,11 @@
 package com.github.andrebrait.workshops.jmh;
 
-import com.github.andrebrait.workshops.jmh.domain.AccuratePoint;
-import com.github.andrebrait.workshops.jmh.domain.FastPoint;
-import com.github.andrebrait.workshops.jmh.domain.RawCoordinate;
-import com.github.andrebrait.workshops.jmh.domain.SuperFastPoint;
-import com.github.andrebrait.workshops.jmh.framework.SystemInfoUtils;
+import com.github.andrebrait.workshops.jmh.domain.*;
 
-import static com.github.andrebrait.workshops.jmh.framework.Benchmark.*;
+import static com.github.andrebrait.workshops.jmh.framework.BenchmarkFramework.*;
 
 /**
  * "Naive" benchmark with a slightly more complex class hierarchy and object reuse
- *
- * <p>Results (Windows):
- *
- * <pre>
- *  JVM info:
- *  	Name: OpenJDK 64-Bit Server VM
- *  	Vendor: Eclipse Adoptium
- *  	Version: 17.0.10+7
- *  	Architecture: amd64
- *
- *  CPU info:
- *  	AMD Ryzen 9 5900X 12-Core Processor
- *  	 1 physical CPU package(s)
- *  	 12 physical CPU core(s)
- *  	 24 logical CPU(s)
- *  	Identifier: AuthenticAMD Family 25 Model 33 Stepping 0
- *  	Microarchitecture: Zen 3
- *
- *  OS info:
- *  	Microsoft Windows 11 build 22631
- *
- *  Running: point_accurate_reuse
- *  127224817 ops/ms  (warmup) |
- *  124505207 ops/ms  (warmup) |
- *  123661992 ops/ms  |
- *  123809707 ops/ms  |
- *  123770960 ops/ms  |
- *  [ ~123747553 ops/ms ]
- *
- *  Running: point_accurate_raw_reuse
- *  1536907 ops/ms  (warmup) |
- *  1543572 ops/ms  (warmup) |
- *  1529615 ops/ms  |
- *  1537882 ops/ms  |
- *  1540712 ops/ms  |
- *  [ ~1536069 ops/ms ]
- *
- *  Running: point_fast
- *  575632 ops/ms  (warmup) |
- *  575950 ops/ms  (warmup) |
- *  571535 ops/ms  |
- *  576847 ops/ms  |
- *  576680 ops/ms  |
- *  [ ~575020 ops/ms ]
- *
- *  Running: point_super_fast
- *  576427 ops/ms  (warmup) |
- *  578050 ops/ms  (warmup) |
- *  578807 ops/ms  |
- *  578795 ops/ms  |
- *  576712 ops/ms  |
- *  [ ~578104 ops/ms ]
- * </pre>
- *
- * <p>Results (macOS):
- *
- * <pre>
- *  JVM info:
- *  	Name: OpenJDK 64-Bit Server VM
- *  	Vendor: Eclipse Adoptium
- *  	Version: 17.0.9+9
- *  	Architecture: aarch64
- *
- *  CPU info:
- *  	Apple M1 Pro
- *  	 1 physical CPU package(s)
- *  	 10 physical CPU core(s) (8 performance + 2 efficiency)
- *  	 10 logical CPU(s)
- *  	Identifier: Apple Inc. Family 0x1b588bb3 Model 0 Stepping 0
- *  	Microarchitecture: ARM64 SoC: Firestorm + Icestorm
- *
- *  OS info:
- *  	Apple macOS 14.4 (Sonoma) build 23E214
- *
- *  Running: point_accurate
- *  44536557 ops/ms  (warmup) |
- *  44785737 ops/ms  (warmup) |
- *  44770250 ops/ms  |
- *  44743535 ops/ms  |
- *  44557655 ops/ms  |
- *  [ ~44690480 ops/ms ]
- *
- *  Running: point_accurate_raw
- *  1153750 ops/ms  (warmup) |
- *  1154525 ops/ms  (warmup) |
- *  1150300 ops/ms  |
- *  1152087 ops/ms  |
- *  1151755 ops/ms  |
- *  [ ~1151380 ops/ms ]
- *
- *  Running: point_fast
- *  484840 ops/ms  (warmup) |
- *  486805 ops/ms  (warmup) |
- *  484347 ops/ms  |
- *  486582 ops/ms  |
- *  475160 ops/ms  |
- *  [ ~482029 ops/ms ]
- *
- *  Running: point_super_fast
- *  482267 ops/ms  (warmup) |
- *  482097 ops/ms  (warmup) |
- *  483237 ops/ms  |
- *  483185 ops/ms  |
- *  483735 ops/ms  |
- *  [ ~483385 ops/ms ]
- * </pre>
  */
 public final class C_PointReusedBenchmark {
 
@@ -143,8 +33,14 @@ public final class C_PointReusedBenchmark {
         bench("point_super_fast", RUN_MILLIS, LOOP, WARMUP, REPEAT, () -> a.distance(b));
     }
 
+    private static void bench_fixed_reuse() {
+        FixedPoint a = new FixedPoint(0, 0);
+        FixedPoint b = new FixedPoint(10, 10);
+        bench("point_super_fast", RUN_MILLIS, LOOP, WARMUP, REPEAT, () -> a.distance(b));
+    }
+
     public static void main(String[] args) {
-        SystemInfoUtils.printSystemInfo();
+        //SystemInfoUtils.printSystemInfo();
         bench_accurate_reuse();
         bench_accurate_raw_reuse();
         bench_fast_reuse();

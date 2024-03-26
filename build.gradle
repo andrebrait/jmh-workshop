@@ -3,6 +3,20 @@ plugins {
     id 'idea'
 }
 
+idea {
+    module {
+        inheritOutputDirs = true
+        excludeDirs = [
+            file('.gradle'),
+            file('build/generated'),
+            file('build/libs'),
+            file('build/tmp'),
+            file('build/classes'),  // remove to see compiled classes
+            file('build'),          // remove to see compiled classes
+        ]
+    }
+}
+
 group 'com.github.andrebrait'
 version '1.0.0-SNAPSHOT'
 
@@ -23,6 +37,7 @@ sourceSets {
         java.srcDirs = ['src/jmh/java']
         resources.srcDirs = ['src/jmh/resources']
         compileClasspath += sourceSets.main.runtimeClasspath
+        runtimeClasspath += sourceSets.test.runtimeClasspath
     }
 }
 

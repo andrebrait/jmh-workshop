@@ -37,4 +37,8 @@ public final class SystemInfoUtils {
                 info.getOperatingSystem().toString().lines().map("\t"::concat).collect(
                         Collectors.joining(System.lineSeparator())));
     }
+
+    private SystemInfoUtils() {
+        // util class
+    }
 }
