@@ -25,8 +25,8 @@ public final class A_SteveSuperDuperBenchmark {
 
     public static void main(String[] args) {
         //SystemInfoUtils.printSystemInfo();
-        bench("steve", RUN_MILLIS, LOOP, WARMUP, REPEAT, Solutions::steve);
-        bench("joe", RUN_MILLIS, LOOP, WARMUP, REPEAT, Solutions::joe);
-        bench("bob", RUN_MILLIS, LOOP, WARMUP, REPEAT, Solutions::bob);
+        bench("steve", RUN_MILLIS, LOOP, WARMUP, REPEAT, () -> Solutions.steve(0, 0, 10, 10));
+        bench("bob", RUN_MILLIS, LOOP, WARMUP, REPEAT, () -> Solutions.bob(0, 0, 10, 10));
+        bench("joe", RUN_MILLIS, LOOP, WARMUP, REPEAT, () -> Solutions.joe(0, 0, 10, 10));
     }
 }

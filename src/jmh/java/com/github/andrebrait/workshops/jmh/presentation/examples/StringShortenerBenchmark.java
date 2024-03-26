@@ -1,4 +1,4 @@
-package com.github.andrebrait.workshops.jmh.examples;
+package com.github.andrebrait.workshops.jmh.presentation.examples;
 
 import org.openjdk.jmh.annotations.*;
 

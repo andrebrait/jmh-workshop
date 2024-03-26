@@ -8,37 +8,18 @@ import static com.github.andrebrait.workshops.jmh.utils.InputUtils.select;
  */
 public final class SuperDuperBenchmark_Fix1 {
 
+    enum Benchmark {
+        bob, joe, steve
+    }
+
     public static void main(String[] args) {
         //SystemInfoUtils.printSystemInfo();
         Benchmark benchmark = select("Select a benchmark to run:", Benchmark.class);
         Runnable benchmarkMethod = switch (benchmark) {
-            case distance -> () -> distance(0, 0, 10, 10);
-            case constant -> () -> constant(0, 0, 10, 10);
-            case nothing -> SuperDuperBenchmark_Fix1::nothing;
+            case bob -> () -> Solutions.bob(0, 0, 10, 10);
+            case joe -> () -> Solutions.joe(0, 0, 10, 10);
+            case steve -> () -> Solutions.steve(0, 0, 10, 10);
         };
         bench(benchmark.name(), RUN_MILLIS, LOOP, WARMUP, REPEAT, benchmarkMethod);
-    }
-
-    /*
-     *
-     * Benchmark-specific code below
-     *
-     */
-
-    enum Benchmark {
-        distance, constant, nothing
-    }
-
-    private static double distance(double x1, double y1, double x2, double y2) {
-        double dx = x2 - x1;
-        double dy = y2 - y1;
-        return Math.sqrt((dx * dx) + (dy * dy));
-    }
-
-    private static double constant(double x1, double y1, double x2, double y2) {
-        return 0.0d;
-    }
-
-    private static void nothing() {
     }
 }

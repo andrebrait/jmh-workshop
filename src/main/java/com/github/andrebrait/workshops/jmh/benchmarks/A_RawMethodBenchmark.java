@@ -1,4 +1,4 @@
-package com.github.andrebrait.workshops.jmh;
+package com.github.andrebrait.workshops.jmh.benchmarks;
 
 import static com.github.andrebrait.workshops.jmh.framework.BenchmarkFramework.*;
 

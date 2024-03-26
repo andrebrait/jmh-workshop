@@ -1,7 +1,5 @@
 package com.github.andrebrait.workshops.jmh.presentation;
 
-import java.util.Random;
-import java.util.concurrent.ThreadLocalRandom;
 import java.util.function.Consumer;
 
 import static com.github.andrebrait.workshops.jmh.framework.BenchmarkFramework.*;
@@ -14,47 +12,22 @@ import static com.github.andrebrait.workshops.jmh.utils.InputUtils.select;
  */
 public final class SuperDuperBenchmark_Fix3 {
     enum Benchmark {
-        distance, constant
+        bob, joe
     }
 
     private static long executions;
-
-    private record Operands(double x1, double y1, double x2, double y2) {
-        static Operands random() {
-            Random random = ThreadLocalRandom.current();
-            return new Operands(
-                    random.nextDouble(100),
-                    random.nextDouble(100),
-                    random.nextDouble(100),
-                    random.nextDouble(100));
-        }
-    }
-
-    private static void count() {
-        executions++;
-    }
-
-    private static double distance(double x1, double y1, double x2, double y2) {
-        double dx = x2 - x1;
-        double dy = y2 - y1;
-        return Math.sqrt((dx * dx) + (dy * dy));
-    }
-
-    private static double constant(double x1, double y1, double x2, double y2) {
-        return 0.0d;
-    }
 
     public static void main(String[] args) {
         //SystemInfoUtils.printSystemInfo();
         Benchmark benchmark = select("Select a benchmark to run:", Benchmark.class);
         Consumer<Operands> benchmarkMethod = switch (benchmark) {
-            case distance -> o -> {
-                distance(o.x1(), o.y1(), o.x2(), o.y2());
-                count();
+            case bob -> o -> {
+                Solutions.bob(o.x1(), o.y1(), o.x2(), o.y2());
+                executions++;
             };
-            case constant -> o -> {
-                constant(o.x1(), o.y1(), o.x2(), o.y2());
-                count();
+            case joe -> o -> {
+                Solutions.joe(o.x1(), o.y1(), o.x2(), o.y2());
+                executions++;
             };
         };
         bench(

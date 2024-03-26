@@ -11,8 +11,8 @@ public final class A_BobSuperDuperBenchmark {
 
     public static void main(String[] args) {
         //SystemInfoUtils.printSystemInfo();
-        bench("bob", RUN_MILLIS, LOOP, WARMUP, REPEAT, Solutions::bob);
-        bench("joe", RUN_MILLIS, LOOP, WARMUP, REPEAT, Solutions::joe);
-        bench("steve", RUN_MILLIS, LOOP, WARMUP, REPEAT, Solutions::steve);
+        bench("bob", RUN_MILLIS, LOOP, WARMUP, REPEAT, () -> Solutions.bob(0, 0, 10, 10));
+        bench("joe", RUN_MILLIS, LOOP, WARMUP, REPEAT, () -> Solutions.joe(0, 0, 10, 10));
+        bench("steve", RUN_MILLIS, LOOP, WARMUP, REPEAT, () -> Solutions.steve(0, 0, 10, 10));
     }
 }

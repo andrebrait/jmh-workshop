@@ -107,16 +107,16 @@ public final class BenchmarkFramework {
     /**
      * Runs a given benchmark and print the statistics.
      *
-     * @param name         the name of the benchmark (for display purposes)
-     * @param runMillis    the duration of the benchmark (in milliseconds)
-     * @param loop         the number of times to execute the benchmarked code per time measurement
-     * @param warmup       how many runs to execute before taking measurements
-     * @param repeat       how many times to repeat the benchmark in total (after the warmup)
-     * @param argsSupplier supplier of arguments used for the benchmark, called once per trial
-     * @param blackhole    a {@link Consumer} that will consume the values returned by the benchmark
-     * @param benchmark    a {@link Function} which will contain the benchmarked code
-     * @param <A>          the argument type taken by the benchmark
-     * @param <R>          the type returned by the benchmark and consumed by the blackhole
+     * @param name           the name of the benchmark (for display purposes)
+     * @param runMillis      the duration of the benchmark (in milliseconds)
+     * @param loop           the number of times to execute the benchmarked code per time measurement
+     * @param warmup         how many runs to execute before taking measurements
+     * @param repeat         how many times to repeat the benchmark in total (after the warmup)
+     * @param argsSupplier   supplier of arguments used for the benchmark, called once per trial
+     * @param resultConsumer a {@link Consumer} that will consume the values returned by the benchmark
+     * @param benchmark      a {@link Function} which will contain the benchmarked code
+     * @param <A>            the argument type taken by the benchmark
+     * @param <R>            the type returned by the benchmark and consumed by the resultConsumer
      */
     public static <A, R> void bench(
             String name,
@@ -125,7 +125,7 @@ public final class BenchmarkFramework {
             int warmup,
             int repeat,
             Supplier<A> argsSupplier,
-            Consumer<R> blackhole,
+            Consumer<R> resultConsumer,
             Function<A, R> benchmark) {
         System.out.printf("Running: %s%n", name);
         int max = repeat + warmup;
@@ -137,7 +137,7 @@ public final class BenchmarkFramework {
             long start = System.currentTimeMillis();
             while (duration < runMillis) {
                 for (int j = 0; j < loop; j++) {
-                    blackhole.accept(benchmark.apply(args));
+                    resultConsumer.accept(benchmark.apply(args));
                     numOperations++;
                 }
                 duration = System.currentTimeMillis() - start;

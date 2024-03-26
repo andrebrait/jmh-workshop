@@ -1,4 +1,4 @@
-package com.github.andrebrait.workshops.jmh.demo;
+package com.github.andrebrait.workshops.jmh.presentation.jitdemo;
 
 import org.openjdk.jmh.annotations.*;
 import org.openjdk.jmh.runner.Runner;

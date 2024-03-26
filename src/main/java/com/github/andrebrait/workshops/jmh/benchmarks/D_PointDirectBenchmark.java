@@ -1,4 +1,4 @@
-package com.github.andrebrait.workshops.jmh;
+package com.github.andrebrait.workshops.jmh.benchmarks;
 
 import com.github.andrebrait.workshops.jmh.domain.*;
 import com.github.andrebrait.workshops.jmh.framework.BenchmarkFramework;

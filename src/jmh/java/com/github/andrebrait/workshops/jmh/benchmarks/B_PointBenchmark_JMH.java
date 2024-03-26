@@ -1,5 +1,6 @@
-package com.github.andrebrait.workshops.jmh;
+package com.github.andrebrait.workshops.jmh.benchmarks;
 
+import com.github.andrebrait.workshops.jmh.domain.*;
 import org.openjdk.jmh.annotations.*;
 import org.openjdk.jmh.infra.Blackhole;
 import org.openjdk.jmh.runner.Runner;
@@ -18,46 +19,52 @@ import java.util.regex.Pattern;
 @Measurement(iterations = 3, time = 2)
 @OutputTimeUnit(TimeUnit.MILLISECONDS)
 @Fork(1)
-public class A_RawMethodBenchmark_JMH {
+public class B_PointBenchmark_JMH {
 
     @State(Scope.Benchmark)
     public static class Operands {
-        private double x1, y1, x2, y2;
+        private int x1, y1, x2, y2;
 
         @Setup
         public void setup() {
             Random random = ThreadLocalRandom.current();
-            x1 = random.nextDouble(100);
-            y1 = random.nextDouble(100);
-            x2 = random.nextDouble(100);
-            y2 = random.nextDouble(100);
+            x1 = random.nextInt(200);
+            y1 = random.nextInt(200);
+            x2 = random.nextInt(200);
+            y2 = random.nextInt(200);
         }
     }
 
-    private static double distance(double x1, double y1, double x2, double y2) {
-        double dx = x2 - x1;
-        double dy = y2 - y1;
-        return Math.sqrt((dx * dx) + (dy * dy));
-    }
-
-    private static double constant(double x1, double y1, double x2, double y2) {
-        return 0.0d;
+    @Benchmark
+    public void accuratePoint(Blackhole blackhole, Operands operands) {
+        Point a = new AccuratePoint(operands.x1, operands.y1);
+        Point b = new AccuratePoint(operands.x2, operands.y2);
+        blackhole.consume(a.distance(b));
     }
 
     @Benchmark
-    public void distance(Blackhole blackhole, Operands operands) {
-        blackhole.consume(distance(operands.x1, operands.y1, operands.x2, operands.y2));
+    public void fastPoint(Blackhole blackhole, Operands operands) {
+        Point a = new FastPoint(operands.x1, operands.y1);
+        Point b = new FastPoint(operands.x2, operands.y2);
+        blackhole.consume(a.distance(b));
     }
 
+    @Benchmark
+    public void superFastPoint(Blackhole blackhole, Operands operands) {
+        Point a = new SuperFastPoint(operands.x1, operands.y1);
+        Point b = new SuperFastPoint(operands.x2, operands.y2);
+        blackhole.consume(a.distance(b));
+    }
 
     @Benchmark
-    public void constant(Blackhole blackhole, Operands operands) {
-        blackhole.consume(constant(operands.x1, operands.y1, operands.x2, operands.y2));
+    public void fixedPoint(Blackhole blackhole, Operands operands) {
+        Point a = new FixedPoint(operands.x1, operands.y1);
+        Point b = new FixedPoint(operands.x2, operands.y2);
+        blackhole.consume(a.distance(b));
     }
 
     public static void main(String[] args) throws RunnerException {
-        String regex =
-                "^%s\\..*".formatted(Pattern.quote(A_RawMethodBenchmark_JMH.class.getName()));
+        String regex = "^%s\\..*".formatted(Pattern.quote(B_PointBenchmark_JMH.class.getName()));
         Options options = new OptionsBuilder()
                 //.jvmArgsAppend("-Djmh.blackhole.mode=COMPILER")
                 //.addProfiler("gc")
