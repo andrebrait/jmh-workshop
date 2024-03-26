@@ -1,8 +1,6 @@
 package com.github.andrebrait.workshops.jmh.framework;
 
 import java.util.function.Consumer;
-import java.util.function.Function;
-import java.util.function.Supplier;
 
 /**
  * "Naive" Benchmarking Framework used as an example on how <em>not</em> to do benchmarking in a JVM.
@@ -32,7 +30,12 @@ public final class BenchmarkFramework {
      * @param benchmark a {@link Runnable} which will contain the benchmarked code
      */
     public static void bench(
-            String name, long runMillis, int loop, int warmup, int repeat, Runnable benchmark) {
+            String name,
+            long runMillis,
+            int loop,
+            int warmup,
+            int repeat,
+            BenchRunnable benchmark) {
         System.out.printf("Running: %s%n", name);
         int max = repeat + warmup;
         long average = 0L;
@@ -76,8 +79,8 @@ public final class BenchmarkFramework {
             int loop,
             int warmup,
             int repeat,
-            Supplier<A> argsSupplier,
-            Consumer<A> benchmark) {
+            BenchSupplier<A> argsSupplier,
+            BenchConsumer<A> benchmark) {
         System.out.printf("Running: %s%n", name);
         int max = repeat + warmup;
         long average = 0L;
@@ -113,8 +116,8 @@ public final class BenchmarkFramework {
      * @param warmup         how many runs to execute before taking measurements
      * @param repeat         how many times to repeat the benchmark in total (after the warmup)
      * @param argsSupplier   supplier of arguments used for the benchmark, called once per trial
-     * @param resultConsumer a {@link Consumer} that will consume the values returned by the benchmark
-     * @param benchmark      a {@link Function} which will contain the benchmarked code
+     * @param resultConsumer a consumer that will consume the values returned by the benchmark
+     * @param benchmark      a function which will contain the benchmarked code
      * @param <A>            the argument type taken by the benchmark
      * @param <R>            the type returned by the benchmark and consumed by the resultConsumer
      */
@@ -124,9 +127,9 @@ public final class BenchmarkFramework {
             int loop,
             int warmup,
             int repeat,
-            Supplier<A> argsSupplier,
-            Consumer<R> resultConsumer,
-            Function<A, R> benchmark) {
+            BenchSupplier<A> argsSupplier,
+            BenchConsumer<R> resultConsumer,
+            BenchFunction<A, R> benchmark) {
         System.out.printf("Running: %s%n", name);
         int max = repeat + warmup;
         long average = 0L;
@@ -138,6 +141,54 @@ public final class BenchmarkFramework {
             while (duration < runMillis) {
                 for (int j = 0; j < loop; j++) {
                     resultConsumer.accept(benchmark.apply(args));
+                    numOperations++;
+                }
+                duration = System.currentTimeMillis() - start;
+            }
+            long throughput = numOperations / duration;
+            boolean benchRun = i >= warmup;
+            if (benchRun) {
+                average = average + throughput;
+            }
+            System.out.printf("%d ops/ms %s%n", throughput, (!benchRun ? " (warmup) | " : " | "));
+        }
+        average = average / repeat;
+        System.out.printf("[ ~%d ops/ms ]%n%n", average);
+    }
+
+    /**
+     * Runs a given benchmark and print the statistics, avoiding boxing/unboxing costs.
+     *
+     * @param name           the name of the benchmark (for display purposes)
+     * @param runMillis      the duration of the benchmark (in milliseconds)
+     * @param loop           the number of times to execute the benchmarked code per time measurement
+     * @param warmup         how many runs to execute before taking measurements
+     * @param repeat         how many times to repeat the benchmark in total (after the warmup)
+     * @param argsSupplier   supplier of arguments used for the benchmark, called once per trial
+     * @param resultConsumer a consumer that will consume the values returned by the benchmark
+     * @param benchmark      a function which will contain the benchmarked code
+     * @param <A>            the argument type taken by the benchmark
+     */
+    public static <A> void benchDouble(
+            String name,
+            long runMillis,
+            int loop,
+            int warmup,
+            int repeat,
+            BenchSupplier<A> argsSupplier,
+            BenchDoubleConsumer resultConsumer,
+            BenchToDoubleFunction<A> benchmark) {
+        System.out.printf("Running: %s%n", name);
+        int max = repeat + warmup;
+        long average = 0L;
+        for (int i = 0; i < max; i++) {
+            A args = argsSupplier.get();
+            long numOperations = 0L;
+            long duration = 0L;
+            long start = System.currentTimeMillis();
+            while (duration < runMillis) {
+                for (int j = 0; j < loop; j++) {
+                    resultConsumer.accept(benchmark.applyAsDouble(args));
                     numOperations++;
                 }
                 duration = System.currentTimeMillis() - start;

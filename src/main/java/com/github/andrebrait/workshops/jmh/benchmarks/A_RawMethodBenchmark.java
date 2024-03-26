@@ -22,8 +22,8 @@ public final class A_RawMethodBenchmark {
 
     public static void main(String[] args) {
         //SystemInfoUtils.printSystemInfo();
-        bench("distance", RUN_MILLIS, LOOP, WARMUP, REPEAT, () -> distance(0, 0, 10, 10));
-        bench("constant", RUN_MILLIS, LOOP, WARMUP, REPEAT, () -> constant(0, 0, 10, 10));
+        bench("distance", RUN_MILLIS, LOOP, WARMUP, REPEAT, () -> distance(0.0d, 0.0d, 10.0d, 10.0d));
+        bench("constant", RUN_MILLIS, LOOP, WARMUP, REPEAT, () -> constant(0.0d, 0.0d, 10.0d, 10.0d));
         bench("nothing", RUN_MILLIS, LOOP, WARMUP, REPEAT, A_RawMethodBenchmark::nothing);
     }
 }

@@ -29,16 +29,27 @@ public class SuperDuperBenchmark_JMH {
     }
 
     @Benchmark
+    public void allan(Blackhole blackhole, BenchmarkArguments args) {
+        Operands o = args.operands;
+        blackhole.consume(Solutions.allan(o.x1(), o.y1(), o.x2(), o.y2()));
+    }
+
+    @Benchmark
     public void bob(Blackhole blackhole, BenchmarkArguments args) {
         Operands o = args.operands;
         blackhole.consume(Solutions.bob(o.x1(), o.y1(), o.x2(), o.y2()));
     }
 
-
     @Benchmark
     public void joe(Blackhole blackhole, BenchmarkArguments args) {
         Operands o = args.operands;
         blackhole.consume(Solutions.joe(o.x1(), o.y1(), o.x2(), o.y2()));
+    }
+
+    @Benchmark
+    public void steve(Blackhole blackhole, BenchmarkArguments args) {
+        Operands o = args.operands;
+        blackhole.consume(Solutions.steve(o.x1(), o.y1(), o.x2(), o.y2()));
     }
 
     public static void main(String[] args) throws RunnerException {

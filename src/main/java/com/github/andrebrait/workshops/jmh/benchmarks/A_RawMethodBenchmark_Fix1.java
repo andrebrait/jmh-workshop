@@ -1,5 +1,7 @@
 package com.github.andrebrait.workshops.jmh.benchmarks;
 
+import com.github.andrebrait.workshops.jmh.framework.BenchRunnable;
+
 import static com.github.andrebrait.workshops.jmh.framework.BenchmarkFramework.*;
 import static com.github.andrebrait.workshops.jmh.utils.InputUtils.select;
 
@@ -28,9 +30,9 @@ public final class A_RawMethodBenchmark_Fix1 {
     public static void main(String[] args) {
         //SystemInfoUtils.printSystemInfo();
         Benchmark benchmark = select("Select a benchmark to run:", Benchmark.class);
-        Runnable benchmarkMethod = switch (benchmark) {
-            case distance -> () -> distance(0, 0, 10, 10);
-            case constant -> () -> constant(0, 0, 10, 10);
+        BenchRunnable benchmarkMethod = switch (benchmark) {
+            case distance -> () -> distance(0.0d, 0.0d, 10.0d, 10.0d);
+            case constant -> () -> constant(0.0d, 0.0d, 10.0d, 10.0d);
             case nothing -> A_RawMethodBenchmark_Fix1::nothing;
         };
         bench(benchmark.name(), RUN_MILLIS, LOOP, WARMUP, REPEAT, benchmarkMethod);

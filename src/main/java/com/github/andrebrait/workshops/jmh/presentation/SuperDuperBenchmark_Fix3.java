@@ -1,6 +1,6 @@
 package com.github.andrebrait.workshops.jmh.presentation;
 
-import java.util.function.Consumer;
+import com.github.andrebrait.workshops.jmh.framework.BenchConsumer;
 
 import static com.github.andrebrait.workshops.jmh.framework.BenchmarkFramework.*;
 import static com.github.andrebrait.workshops.jmh.utils.InputUtils.select;
@@ -11,22 +11,27 @@ import static com.github.andrebrait.workshops.jmh.utils.InputUtils.select;
  * consume the result of the operation.
  */
 public final class SuperDuperBenchmark_Fix3 {
-    enum Benchmark {
-        bob, joe
-    }
 
     private static long executions;
 
     public static void main(String[] args) {
         //SystemInfoUtils.printSystemInfo();
-        Benchmark benchmark = select("Select a benchmark to run:", Benchmark.class);
-        Consumer<Operands> benchmarkMethod = switch (benchmark) {
+        BenchmarkName benchmark = select("Select a benchmark to run:", BenchmarkName.class);
+        BenchConsumer<Operands> benchmarkMethod = switch (benchmark) {
+            case allan -> o -> {
+                Solutions.allan(o.x1(), o.y1(), o.x2(), o.y2());
+                executions++;
+            };
             case bob -> o -> {
                 Solutions.bob(o.x1(), o.y1(), o.x2(), o.y2());
                 executions++;
             };
             case joe -> o -> {
                 Solutions.joe(o.x1(), o.y1(), o.x2(), o.y2());
+                executions++;
+            };
+            case steve -> o -> {
+                Solutions.steve(o.x1(), o.y1(), o.x2(), o.y2());
                 executions++;
             };
         };
@@ -38,6 +43,6 @@ public final class SuperDuperBenchmark_Fix3 {
                 REPEAT,
                 Operands::random,
                 benchmarkMethod);
-        System.out.printf("Executions: %df%n", executions);
+        System.out.printf("Executions: %d%n", executions);
     }
 }

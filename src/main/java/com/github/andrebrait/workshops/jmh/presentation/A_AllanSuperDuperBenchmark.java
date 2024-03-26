@@ -3,21 +3,14 @@ package com.github.andrebrait.workshops.jmh.presentation;
 import static com.github.andrebrait.workshops.jmh.framework.BenchmarkFramework.*;
 
 /**
- * Bob's Super Duper Benchmark
+ * Allan's Super Duper Benchmark
  *
- * <p>I'm gonna show Allan, Joe and Steve who's the boss!
+ * <p>My solution is by far the best!
  */
-public final class A_BobSuperDuperBenchmark {
+public final class A_AllanSuperDuperBenchmark {
 
     public static void main(String[] args) {
         //SystemInfoUtils.printSystemInfo();
-        bench(
-                "bob",
-                RUN_MILLIS,
-                LOOP,
-                WARMUP,
-                REPEAT,
-                () -> Solutions.bob(0.0d, 0.0d, 10.0d, 10.0d));
         bench(
                 "allan",
                 RUN_MILLIS,
@@ -25,6 +18,13 @@ public final class A_BobSuperDuperBenchmark {
                 WARMUP,
                 REPEAT,
                 () -> Solutions.allan(0.0d, 0.0d, 10.0d, 10.0d));
+        bench(
+                "bob",
+                RUN_MILLIS,
+                LOOP,
+                WARMUP,
+                REPEAT,
+                () -> Solutions.bob(0.0d, 0.0d, 10.0d, 10.0d));
         bench(
                 "joe",
                 RUN_MILLIS,

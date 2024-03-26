@@ -1,5 +1,7 @@
 package com.github.andrebrait.workshops.jmh.presentation;
 
+import com.github.andrebrait.workshops.jmh.framework.BenchRunnable;
+
 import static com.github.andrebrait.workshops.jmh.framework.BenchmarkFramework.*;
 import static com.github.andrebrait.workshops.jmh.utils.InputUtils.select;
 
@@ -8,17 +10,14 @@ import static com.github.andrebrait.workshops.jmh.utils.InputUtils.select;
  */
 public final class SuperDuperBenchmark_Fix1 {
 
-    enum Benchmark {
-        bob, joe, steve
-    }
-
     public static void main(String[] args) {
         //SystemInfoUtils.printSystemInfo();
-        Benchmark benchmark = select("Select a benchmark to run:", Benchmark.class);
-        Runnable benchmarkMethod = switch (benchmark) {
-            case bob -> () -> Solutions.bob(0, 0, 10, 10);
-            case joe -> () -> Solutions.joe(0, 0, 10, 10);
-            case steve -> () -> Solutions.steve(0, 0, 10, 10);
+        BenchmarkName benchmark = select("Select a benchmark to run:", BenchmarkName.class);
+        BenchRunnable benchmarkMethod = switch (benchmark) {
+            case allan -> () -> Solutions.allan(0.0d, 0.0d, 10.0d, 10.0d);
+            case bob -> () -> Solutions.bob(0.0d, 0.0d, 10.0d, 10.0d);
+            case joe -> () -> Solutions.joe(0.0d, 0.0d, 10.0d, 10.0d);
+            case steve -> () -> Solutions.steve(0.0d, 0.0d, 10.0d, 10.0d);
         };
         bench(benchmark.name(), RUN_MILLIS, LOOP, WARMUP, REPEAT, benchmarkMethod);
     }

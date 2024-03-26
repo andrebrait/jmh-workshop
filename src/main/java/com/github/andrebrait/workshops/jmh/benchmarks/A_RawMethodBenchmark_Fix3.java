@@ -1,8 +1,9 @@
 package com.github.andrebrait.workshops.jmh.benchmarks;
 
+import com.github.andrebrait.workshops.jmh.framework.BenchConsumer;
+
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
-import java.util.function.Consumer;
 
 import static com.github.andrebrait.workshops.jmh.framework.BenchmarkFramework.*;
 import static com.github.andrebrait.workshops.jmh.utils.InputUtils.select;
@@ -17,21 +18,17 @@ public final class A_RawMethodBenchmark_Fix3 {
         distance, constant
     }
 
-    private static long executions;
+    private static double executions;
 
     private record Operands(double x1, double y1, double x2, double y2) {
         static Operands random() {
             Random random = ThreadLocalRandom.current();
             return new Operands(
-                    random.nextDouble(100),
-                    random.nextDouble(100),
-                    random.nextDouble(100),
-                    random.nextDouble(100));
+                    random.nextDouble(1000.0d),
+                    random.nextDouble(1000.0d),
+                    random.nextDouble(1000.0d),
+                    random.nextDouble(1000.0d));
         }
-    }
-
-    private static void count() {
-        executions++;
     }
 
     private static double distance(double x1, double y1, double x2, double y2) {
@@ -47,14 +44,14 @@ public final class A_RawMethodBenchmark_Fix3 {
     public static void main(String[] args) {
         //SystemInfoUtils.printSystemInfo();
         Benchmark benchmark = select("Select a benchmark to run:", Benchmark.class);
-        Consumer<Operands> benchmarkMethod = switch (benchmark) {
+        BenchConsumer<Operands> benchmarkMethod = switch (benchmark) {
             case distance -> o -> {
                 distance(o.x1(), o.y1(), o.x2(), o.y2());
-                count();
+                executions++;
             };
             case constant -> o -> {
                 constant(o.x1(), o.y1(), o.x2(), o.y2());
-                count();
+                executions++;
             };
         };
         bench(
@@ -65,6 +62,6 @@ public final class A_RawMethodBenchmark_Fix3 {
                 REPEAT,
                 Operands::random,
                 benchmarkMethod);
-        System.out.printf("Executions: %df%n", executions);
+        System.out.printf("Executions: %d%n", executions);
     }
 }

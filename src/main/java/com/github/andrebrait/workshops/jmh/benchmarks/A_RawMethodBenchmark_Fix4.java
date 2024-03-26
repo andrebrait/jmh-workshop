@@ -1,11 +1,10 @@
 package com.github.andrebrait.workshops.jmh.benchmarks;
 
+import com.github.andrebrait.workshops.jmh.framework.BenchFunction;
 import com.github.andrebrait.workshops.jmh.framework.BenchmarkFramework;
 
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
-import java.util.function.Consumer;
-import java.util.function.Function;
 
 import static com.github.andrebrait.workshops.jmh.framework.BenchmarkFramework.*;
 import static com.github.andrebrait.workshops.jmh.utils.InputUtils.select;
@@ -21,16 +20,16 @@ public final class A_RawMethodBenchmark_Fix4 {
         distance, constant
     }
 
-    private static long cumulativeResult = 0;
+    private static Double last = 0.0d;
 
     private record Operands(double x1, double y1, double x2, double y2) {
         static Operands random() {
             Random random = ThreadLocalRandom.current();
             return new Operands(
-                    random.nextDouble(100),
-                    random.nextDouble(100),
-                    random.nextDouble(100),
-                    random.nextDouble(100));
+                    random.nextDouble(1000.0d),
+                    random.nextDouble(1000.0d),
+                    random.nextDouble(1000.0d),
+                    random.nextDouble(1000.0d));
         }
     }
 
@@ -47,11 +46,10 @@ public final class A_RawMethodBenchmark_Fix4 {
     public static void main(String[] args) {
         //SystemInfoUtils.printSystemInfo();
         Benchmark benchmark = select("Select a benchmark to run:", Benchmark.class);
-        Function<Operands, Double> benchmarkMethod = switch (benchmark) {
+        BenchFunction<Operands, Double> benchmarkMethod = switch (benchmark) {
             case distance -> o -> distance(o.x1(), o.y1(), o.x2(), o.y2());
             case constant -> o -> constant(o.x1(), o.y1(), o.x2(), o.y2());
         };
-        Consumer<Double> resultConsumer = r -> cumulativeResult += r.longValue();
         BenchmarkFramework.bench(
                 benchmark.name(),
                 RUN_MILLIS,
@@ -59,8 +57,8 @@ public final class A_RawMethodBenchmark_Fix4 {
                 WARMUP,
                 REPEAT,
                 Operands::random,
-                resultConsumer,
+                r -> last = r,
                 benchmarkMethod);
-        System.out.printf("Cumulative result: %d%n", cumulativeResult);
+        System.out.printf("Last result: %f%n", last);
     }
 }
