@@ -17,10 +17,10 @@ import java.util.concurrent.TimeUnit;
 /**
  * Benchmarking a string shortener implementation and its memory allocation/GC characteristics
  */
-@BenchmarkMode(Mode.Throughput)
+@BenchmarkMode(Mode.AverageTime)
 @Warmup(iterations = 2, time = 2)
 @Measurement(iterations = 3, time = 2)
-@OutputTimeUnit(TimeUnit.MILLISECONDS)
+@OutputTimeUnit(TimeUnit.NANOSECONDS)
 @Fork(1)
 public class StringShortenerBenchmark {
 
