@@ -20,7 +20,7 @@ import java.util.concurrent.locks.StampedLock;
  * <p>
  * Inspired by <a href="https://isuru-perera.blogspot.com/2016/05/benchmarking-java-locks-with-counters.html">Benchmarking Java Locks with Counters</a>
  * <p>
- * Results:
+ * Results (macOS ARM64):
  * <pre>
  * Benchmark                                                    Mode  Cnt       Score        Error   Units
  * LockBenchmark.Adder                                         thrpt    3  121557.304 ±  25512.272  ops/ms
@@ -47,6 +47,35 @@ import java.util.concurrent.locks.StampedLock;
  * LockBenchmark.Volatile                                      thrpt    3  753812.569 ± 952572.577  ops/ms
  * LockBenchmark.Volatile:volatile_get                         thrpt    3  726596.444 ± 956115.823  ops/ms
  * LockBenchmark.Volatile:volatile_inc                         thrpt    3   27216.125 ±   9898.125  ops/ms
+ * </pre>
+ *
+ * Results (Windows x86-64):
+ * <pre>
+ * Benchmark                                                    Mode  Cnt        Score        Error   Units
+ * LockBenchmark.Adder                                         thrpt    3   111900.578 ± 204480.530  ops/ms
+ * LockBenchmark.Adder:adder_get                               thrpt    3    24656.565 ±  34727.826  ops/ms
+ * LockBenchmark.Adder:adder_inc                               thrpt    3    87244.012 ± 193287.788  ops/ms
+ * LockBenchmark.Atomic                                        thrpt    3   661270.645 ± 172803.349  ops/ms
+ * LockBenchmark.Atomic:atomic_get                             thrpt    3   617056.897 ± 179494.911  ops/ms
+ * LockBenchmark.Atomic:atomic_inc                             thrpt    3    44213.748 ±   7122.411  ops/ms
+ * LockBenchmark.RWLockFair                                    thrpt    3      102.075 ±     32.198  ops/ms
+ * LockBenchmark.RWLockFair:rw_lock_fair_get                   thrpt    3       51.516 ±     31.089  ops/ms
+ * LockBenchmark.RWLockFair:rw_lock_fair_inc                   thrpt    3       50.559 ±      1.627  ops/ms
+ * LockBenchmark.RWLockNonFair                                 thrpt    3   123758.015 ±  16815.717  ops/ms
+ * LockBenchmark.RWLockNonFair:rw_lock_get                     thrpt    3    14077.482 ±  21791.403  ops/ms
+ * LockBenchmark.RWLockNonFair:rw_lock_inc                     thrpt    3   109680.533 ±   6136.945  ops/ms
+ * LockBenchmark.StampedLock                                   thrpt    3   152385.403 ±  11421.495  ops/ms
+ * LockBenchmark.StampedLock:stamped_get                       thrpt    3    32314.824 ±  27359.128  ops/ms
+ * LockBenchmark.StampedLock:stamped_inc                       thrpt    3   120070.579 ±  33022.030  ops/ms
+ * LockBenchmark.StampedLockOptimistic                         thrpt    3   530662.368 ±  16881.601  ops/ms
+ * LockBenchmark.StampedLockOptimistic:stamped_optimistic_get  thrpt    3   417656.750 ±  27033.940  ops/ms
+ * LockBenchmark.StampedLockOptimistic:stamped_optimistic_inc  thrpt    3   113005.617 ±  16793.148  ops/ms
+ * LockBenchmark.Synchronized                                  thrpt    3    52357.460 ±   2098.374  ops/ms
+ * LockBenchmark.Synchronized:synchronized_get                 thrpt    3    31291.342 ±   2717.365  ops/ms
+ * LockBenchmark.Synchronized:synchronized_inc                 thrpt    3    21066.117 ±   2940.820  ops/ms
+ * LockBenchmark.Volatile                                      thrpt    3  1459644.719 ± 772102.065  ops/ms
+ * LockBenchmark.Volatile:volatile_get                         thrpt    3  1435795.718 ± 770952.513  ops/ms
+ * LockBenchmark.Volatile:volatile_inc                         thrpt    3    23849.001 ±  28207.124  ops/ms
  * </pre>
  */
 @BenchmarkMode(Mode.Throughput)

@@ -13,7 +13,7 @@ import java.util.concurrent.TimeUnit;
  * <p>
  * Reference: <a href="https://shipilev.net/jvm/anatomy-quarks/16-megamorphic-virtual-calls/">JVM Anatomy Quark #16</a>
  * <p>
- * Result:
+ * Results (macOS):
  * <pre>
  * Benchmark                              (mode)  Mode  Cnt     Score     Error  Units
  * VirtualCallBenchmark.test_compiled       mono  avgt    3   121.812 ±   6.124  ns/op
@@ -22,6 +22,17 @@ import java.util.concurrent.TimeUnit;
  * VirtualCallBenchmark.test_interpreted    mono  avgt    3  5918.139 ±  11.641  ns/op
  * VirtualCallBenchmark.test_interpreted      bi  avgt    3  5601.312 ±  18.450  ns/op
  * VirtualCallBenchmark.test_interpreted    mega  avgt    3  5230.826 ±  83.587  ns/op
+ * </pre>
+ *
+ * Results (Windows x86-64):
+ * <pre>
+ * Benchmark                              (mode)  Mode  Cnt     Score      Error  Units
+ * VirtualCallBenchmark.test_compiled       mono  avgt    3   100.138 ±    0.340  ns/op
+ * VirtualCallBenchmark.test_compiled         bi  avgt    3   111.245 ±    5.697  ns/op
+ * VirtualCallBenchmark.test_compiled       mega  avgt    3  2622.706 ±  381.581  ns/op
+ * VirtualCallBenchmark.test_interpreted    mono  avgt    3  5925.842 ±  729.405  ns/op
+ * VirtualCallBenchmark.test_interpreted      bi  avgt    3  5865.523 ±  192.276  ns/op
+ * VirtualCallBenchmark.test_interpreted    mega  avgt    3  5863.516 ± 2017.571  ns/op
  * </pre>
  */
 @BenchmarkMode(Mode.AverageTime)

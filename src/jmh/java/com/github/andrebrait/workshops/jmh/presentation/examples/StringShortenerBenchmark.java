@@ -17,7 +17,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * Benchmarking a string shortener implementation and its memory allocation/GC characteristics
  * <p>
- * Results:
+ * Results (macOS ARM64):
  * <pre>
  * Benchmark                                                                           (className)  (separators)  Mode  Cnt       Score      Error   Units
  * StringShortenerBenchmark.shorten_loop                                                   MyClass             0  avgt    3     372.239 ±   21.760   ns/op
@@ -125,11 +125,10 @@ import java.util.concurrent.TimeUnit;
  * StringShortenerBenchmark.shorten_split_cached:gc.alloc.rate.norm  MyClassListenerBuilderFactory            10  avgt    3      ≈ 10⁻⁴               B/op
  * StringShortenerBenchmark.shorten_split_cached:gc.count            MyClassListenerBuilderFactory            10  avgt    3         ≈ 0             counts
  * </pre>
- * <p>
- * Important parts:
+ *
+ * Important parts (macOS ARM64):
  * <pre>
  * Benchmark                                                                           (className)  (separators)  Mode  Cnt       Score      Error   Units
-
  * StringShortenerBenchmark.shorten_loop                             MyClassListenerBuilderFactory             5  avgt    3    8353.022 ± 2274.996   ns/op
  * StringShortenerBenchmark.shorten_loop:gc.alloc.rate.norm          MyClassListenerBuilderFactory             5  avgt    3   16800.002 ±    0.001    B/op
  * StringShortenerBenchmark.shorten_loop:gc.time                     MyClassListenerBuilderFactory             5  avgt    3      18.000                 ms
@@ -142,6 +141,93 @@ import java.util.concurrent.TimeUnit;
  * StringShortenerBenchmark.shorten_split                            MyClassListenerBuilderFactory            10  avgt    3   24344.259 ±  827.828   ns/op
  * StringShortenerBenchmark.shorten_split:gc.alloc.rate.norm         MyClassListenerBuilderFactory            10  avgt    3  109576.006 ±    0.004    B/op
  * StringShortenerBenchmark.shorten_split:gc.time                    MyClassListenerBuilderFactory            10  avgt    3      40.000                 ms
+ * </pre>
+ *
+ * Results (Windows x86-64):
+ * <pre>
+ * Benchmark                                                                           (className)  (separators)  Mode  Cnt       Score      Error   Units
+ * StringShortenerBenchmark.shorten_loop                                                   MyClass             5  avgt    3    6636.842 ±  367.491   ns/op
+ * StringShortenerBenchmark.shorten_loop:gc.alloc.rate.norm                                MyClass             5  avgt    3   15200.002 ±    0.001    B/op
+ * StringShortenerBenchmark.shorten_loop:gc.time                                           MyClass             5  avgt    3      22.000                 ms
+ * StringShortenerBenchmark.shorten_loop                                                   MyClass            10  avgt    3   10191.214 ± 3062.475   ns/op
+ * StringShortenerBenchmark.shorten_loop:gc.alloc.rate.norm                                MyClass            10  avgt    3   16000.003 ±    0.001    B/op
+ * StringShortenerBenchmark.shorten_loop:gc.time                                           MyClass            10  avgt    3      15.000                 ms
+ * StringShortenerBenchmark.shorten_loop                             MyClassListenerBuilderFactory             5  avgt    3    7921.299 ±   62.748   ns/op
+ * StringShortenerBenchmark.shorten_loop:gc.alloc.rate.norm          MyClassListenerBuilderFactory             5  avgt    3   16800.002 ±    0.001    B/op
+ * StringShortenerBenchmark.shorten_loop:gc.time                     MyClassListenerBuilderFactory             5  avgt    3      19.000                 ms
+ * StringShortenerBenchmark.shorten_loop                             MyClassListenerBuilderFactory            10  avgt    3   12035.973 ± 1406.314   ns/op
+ * StringShortenerBenchmark.shorten_loop:gc.alloc.rate.norm          MyClassListenerBuilderFactory            10  avgt    3   27200.003 ±    0.001    B/op
+ * StringShortenerBenchmark.shorten_loop:gc.count                    MyClassListenerBuilderFactory            10  avgt    3      43.000             counts
+ * StringShortenerBenchmark.shorten_loop:gc.time                     MyClassListenerBuilderFactory            10  avgt    3      21.000                 ms
+ * StringShortenerBenchmark.shorten_loop_cached                                            MyClass             5  avgt    3     639.384 ±  111.619   ns/op
+ * StringShortenerBenchmark.shorten_loop_cached:gc.alloc.rate                              MyClass             5  avgt    3      ≈ 10⁻⁴             MB/sec
+ * StringShortenerBenchmark.shorten_loop_cached:gc.alloc.rate.norm                         MyClass             5  avgt    3      ≈ 10⁻⁴               B/op
+ * StringShortenerBenchmark.shorten_loop_cached:gc.count                                   MyClass             5  avgt    3         ≈ 0             counts
+ * StringShortenerBenchmark.shorten_loop_cached                                            MyClass            10  avgt    3     775.031 ±   55.464   ns/op
+ * StringShortenerBenchmark.shorten_loop_cached:gc.alloc.rate                              MyClass            10  avgt    3      ≈ 10⁻⁴             MB/sec
+ * StringShortenerBenchmark.shorten_loop_cached:gc.alloc.rate.norm                         MyClass            10  avgt    3      ≈ 10⁻⁴               B/op
+ * StringShortenerBenchmark.shorten_loop_cached:gc.count                                   MyClass            10  avgt    3         ≈ 0             counts
+ * StringShortenerBenchmark.shorten_loop_cached                      MyClassListenerBuilderFactory             5  avgt    3     663.235 ±  187.044   ns/op
+ * StringShortenerBenchmark.shorten_loop_cached:gc.alloc.rate        MyClassListenerBuilderFactory             5  avgt    3      ≈ 10⁻⁴             MB/sec
+ * StringShortenerBenchmark.shorten_loop_cached:gc.alloc.rate.norm   MyClassListenerBuilderFactory             5  avgt    3      ≈ 10⁻⁴               B/op
+ * StringShortenerBenchmark.shorten_loop_cached:gc.count             MyClassListenerBuilderFactory             5  avgt    3         ≈ 0             counts
+ * StringShortenerBenchmark.shorten_loop_cached                      MyClassListenerBuilderFactory            10  avgt    3     673.293 ±  257.577   ns/op
+ * StringShortenerBenchmark.shorten_loop_cached:gc.alloc.rate        MyClassListenerBuilderFactory            10  avgt    3      ≈ 10⁻⁴             MB/sec
+ * StringShortenerBenchmark.shorten_loop_cached:gc.alloc.rate.norm   MyClassListenerBuilderFactory            10  avgt    3      ≈ 10⁻⁴               B/op
+ * StringShortenerBenchmark.shorten_loop_cached:gc.count             MyClassListenerBuilderFactory            10  avgt    3         ≈ 0             counts
+ * StringShortenerBenchmark.shorten_split                                                  MyClass             5  avgt    3   12613.700 ± 3843.884   ns/op
+ * StringShortenerBenchmark.shorten_split:gc.alloc.rate                                    MyClass             5  avgt    3    4327.481 ± 1327.302  MB/sec
+ * StringShortenerBenchmark.shorten_split:gc.alloc.rate.norm                               MyClass             5  avgt    3   57232.003 ±    0.001    B/op
+ * StringShortenerBenchmark.shorten_split:gc.count                                         MyClass             5  avgt    3      87.000             counts
+ * StringShortenerBenchmark.shorten_split:gc.time                                          MyClass             5  avgt    3      41.000                 ms
+ * StringShortenerBenchmark.shorten_split                                                  MyClass            10  avgt    3   24656.259 ± 4311.001   ns/op
+ * StringShortenerBenchmark.shorten_split:gc.alloc.rate                                    MyClass            10  avgt    3    4082.486 ±  711.997  MB/sec
+ * StringShortenerBenchmark.shorten_split:gc.alloc.rate.norm                               MyClass            10  avgt    3  105552.007 ±    0.001    B/op
+ * StringShortenerBenchmark.shorten_split:gc.count                                         MyClass            10  avgt    3      82.000             counts
+ * StringShortenerBenchmark.shorten_split:gc.time                                          MyClass            10  avgt    3      39.000                 ms
+ * StringShortenerBenchmark.shorten_split                            MyClassListenerBuilderFactory             5  avgt    3   14295.017 ± 4301.033   ns/op
+ * StringShortenerBenchmark.shorten_split:gc.alloc.rate              MyClassListenerBuilderFactory             5  avgt    3    4481.893 ± 1337.793  MB/sec
+ * StringShortenerBenchmark.shorten_split:gc.alloc.rate.norm         MyClassListenerBuilderFactory             5  avgt    3   67176.004 ±    0.001    B/op
+ * StringShortenerBenchmark.shorten_split:gc.count                   MyClassListenerBuilderFactory             5  avgt    3      89.000             counts
+ * StringShortenerBenchmark.shorten_split:gc.time                    MyClassListenerBuilderFactory             5  avgt    3      43.000                 ms
+ * StringShortenerBenchmark.shorten_split                            MyClassListenerBuilderFactory            10  avgt    3   24703.653 ± 5660.994   ns/op
+ * StringShortenerBenchmark.shorten_split:gc.alloc.rate              MyClassListenerBuilderFactory            10  avgt    3    4238.080 ±  964.537  MB/sec
+ * StringShortenerBenchmark.shorten_split:gc.alloc.rate.norm         MyClassListenerBuilderFactory            10  avgt    3  109784.007 ±    0.001    B/op
+ * StringShortenerBenchmark.shorten_split:gc.count                   MyClassListenerBuilderFactory            10  avgt    3      85.000             counts
+ * StringShortenerBenchmark.shorten_split:gc.time                    MyClassListenerBuilderFactory            10  avgt    3      41.000                 ms
+ * StringShortenerBenchmark.shorten_split_cached                                           MyClass             5  avgt    3     678.447 ±  108.492   ns/op
+ * StringShortenerBenchmark.shorten_split_cached:gc.alloc.rate                             MyClass             5  avgt    3      ≈ 10⁻⁴             MB/sec
+ * StringShortenerBenchmark.shorten_split_cached:gc.alloc.rate.norm                        MyClass             5  avgt    3      ≈ 10⁻⁴               B/op
+ * StringShortenerBenchmark.shorten_split_cached:gc.count                                  MyClass             5  avgt    3         ≈ 0             counts
+ * StringShortenerBenchmark.shorten_split_cached                                           MyClass            10  avgt    3     688.905 ±   21.732   ns/op
+ * StringShortenerBenchmark.shorten_split_cached:gc.alloc.rate                             MyClass            10  avgt    3      ≈ 10⁻⁴             MB/sec
+ * StringShortenerBenchmark.shorten_split_cached:gc.alloc.rate.norm                        MyClass            10  avgt    3      ≈ 10⁻⁴               B/op
+ * StringShortenerBenchmark.shorten_split_cached:gc.count                                  MyClass            10  avgt    3         ≈ 0             counts
+ * StringShortenerBenchmark.shorten_split_cached                     MyClassListenerBuilderFactory             5  avgt    3     649.272 ±  203.328   ns/op
+ * StringShortenerBenchmark.shorten_split_cached:gc.alloc.rate       MyClassListenerBuilderFactory             5  avgt    3      ≈ 10⁻⁴             MB/sec
+ * StringShortenerBenchmark.shorten_split_cached:gc.alloc.rate.norm  MyClassListenerBuilderFactory             5  avgt    3      ≈ 10⁻⁴               B/op
+ * StringShortenerBenchmark.shorten_split_cached:gc.count            MyClassListenerBuilderFactory             5  avgt    3         ≈ 0             counts
+ * StringShortenerBenchmark.shorten_split_cached                     MyClassListenerBuilderFactory            10  avgt    3     672.192 ±  152.266   ns/op
+ * StringShortenerBenchmark.shorten_split_cached:gc.alloc.rate       MyClassListenerBuilderFactory            10  avgt    3      ≈ 10⁻⁴             MB/sec
+ * StringShortenerBenchmark.shorten_split_cached:gc.alloc.rate.norm  MyClassListenerBuilderFactory            10  avgt    3      ≈ 10⁻⁴               B/op
+ * StringShortenerBenchmark.shorten_split_cached:gc.count            MyClassListenerBuilderFactory            10  avgt    3         ≈ 0             counts
+ * </pre>
+ *
+ * Important parts (Windows x86-64):
+ * <pre>
+ * Benchmark                                                                           (className)  (separators)  Mode  Cnt       Score      Error   Units
+ * StringShortenerBenchmark.shorten_loop                             MyClassListenerBuilderFactory             5  avgt    3    7921.299 ±   62.748   ns/op
+ * StringShortenerBenchmark.shorten_loop:gc.alloc.rate.norm          MyClassListenerBuilderFactory             5  avgt    3   16800.002 ±    0.001    B/op
+ * StringShortenerBenchmark.shorten_loop:gc.time                     MyClassListenerBuilderFactory             5  avgt    3      19.000                 ms
+ * StringShortenerBenchmark.shorten_loop                             MyClassListenerBuilderFactory            10  avgt    3   12035.973 ± 1406.314   ns/op
+ * StringShortenerBenchmark.shorten_loop:gc.alloc.rate.norm          MyClassListenerBuilderFactory            10  avgt    3   27200.003 ±    0.001    B/op
+ * StringShortenerBenchmark.shorten_loop:gc.time                     MyClassListenerBuilderFactory            10  avgt    3      21.000                 ms
+ * StringShortenerBenchmark.shorten_split                            MyClassListenerBuilderFactory             5  avgt    3   14295.017 ± 4301.033   ns/op
+ * StringShortenerBenchmark.shorten_split:gc.alloc.rate.norm         MyClassListenerBuilderFactory             5  avgt    3   67176.004 ±    0.001    B/op
+ * StringShortenerBenchmark.shorten_split:gc.time                    MyClassListenerBuilderFactory             5  avgt    3      43.000                 ms
+ * StringShortenerBenchmark.shorten_split                            MyClassListenerBuilderFactory            10  avgt    3   24703.653 ± 5660.994   ns/op
+ * StringShortenerBenchmark.shorten_split:gc.alloc.rate.norm         MyClassListenerBuilderFactory            10  avgt    3  109784.007 ±    0.001    B/op
+ * StringShortenerBenchmark.shorten_split:gc.time                    MyClassListenerBuilderFactory            10  avgt    3      41.000                 ms
  * </pre>
  */
 @BenchmarkMode(Mode.AverageTime)

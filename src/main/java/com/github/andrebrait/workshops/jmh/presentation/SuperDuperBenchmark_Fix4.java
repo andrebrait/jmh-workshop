@@ -22,6 +22,8 @@ public final class SuperDuperBenchmark_Fix4 {
      * If we make this a primitive, some crazy optimization is gonna kick in!
      * (Except allan, but that's perhaps because it's too expensive for the
      * difference be observable here)
+     *
+     * This behavior is observed on macOS ARM64, but not on Windows x86-64.
      */
     private static Double last = 0.0d;
 

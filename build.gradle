@@ -3,16 +3,29 @@ plugins {
     id 'idea'
 }
 
+sourceCompatibility = JavaVersion.VERSION_17
+targetCompatibility = JavaVersion.VERSION_17
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+}
+tasks.withType(Test).configureEach {
+    systemProperty("file.encoding", "UTF-8")
+}
+tasks.withType(Javadoc).configureEach {
+    options.encoding = "UTF-8"
+}
+
 idea {
     module {
         inheritOutputDirs = true
         excludeDirs = [
-            file('.gradle'),
-            file('build/generated'),
-            file('build/libs'),
-            file('build/tmp'),
-            file('build/classes'),  // remove to see compiled classes
-            file('build'),          // remove to see compiled classes
+                file('.gradle'),
+                file('build/generated'),
+                file('build/libs'),
+                file('build/tmp'),
+                file('build/classes'),  // remove to see compiled classes
+                file('build'),          // remove to see compiled classes
         ]
     }
 }
@@ -20,8 +33,6 @@ idea {
 group 'com.github.andrebrait'
 version '1.0.0-SNAPSHOT'
 
-sourceCompatibility = 17
-targetCompatibility = 17
 
 sourceSets.main {
     java.srcDirs = ['src/main/java']

@@ -21,6 +21,8 @@ public final class SuperDuperBenchmark_Fix5 {
     /*
      * If we make this a primitive, some crazy optimization is gonna kick in!
      * For allan, this gets reverted if the loop unrolling is prevented.
+     *
+     * This behavior is observed both on macOS ARM64 and on Windows x86-64.
      */
     private static Double last = 0.0d;
 
