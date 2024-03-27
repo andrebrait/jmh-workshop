@@ -65,13 +65,12 @@ public class B_PointBenchmark_JMH {
     public static void main(String[] args) throws RunnerException {
         String regex = "^\\Q%s.\\E.*".formatted(B_PointBenchmark_JMH.class.getName());
         Options options = new OptionsBuilder()
-                //.jvmArgsAppend("-Djmh.blackhole.mode=COMPILER")
+                //.jvmArgsPrepend("-Djmh.blackhole.mode=COMPILER")
                 //.addProfiler("gc")
                 //.addProfiler("xperfasm") // for Windows
                 //.addProfiler("perfasm") // for Linux
                 //.addProfiler("dtraceasm") // for macOS (required root)
-                //.jvmArgsAppend("-XX:LoopUnrollLimit=1") // simplify assembly, keep unrolling to a minimum
-                //.jvmArgsAppend("-XX:-TieredCompilation") // enforce tiered compilation with the final optimizing compiler
+                //.jvmArgsAppend("-XX:LoopUnrollLimit=1", "-XX:-TieredCompilation") // simplify assembly, keep unrolling to a minimum and enforce tiered compilation with the final optimizing compiler
                 .include(regex).build();
         Runner runner = new Runner(options);
         runner.run();
