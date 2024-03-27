@@ -73,7 +73,7 @@ public class SuperDuperBenchmark_JMH {
 
     public static void main(String[] args) throws RunnerException {
         String regex = "^\\Q%s.\\E.*".formatted(SuperDuperBenchmark_JMH.class.getName());
-        Options options = new OptionsBuilder().detectJvmArgs()
+        Options options = new OptionsBuilder()
                 //.jvmArgsPrepend("-Djmh.blackhole.mode=COMPILER")
                 //.addProfiler("gc")
                 //.addProfiler("xperfasm") // for Windows
