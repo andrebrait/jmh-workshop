@@ -1,0 +1,82 @@
+### STARTING FIX 4 ###
+Running: allan
+26370 ops/ms (37.92 ns/op) (warmup) | 
+27170 ops/ms (36.81 ns/op) (warmup) | 
+27260 ops/ms (36.68 ns/op) | 
+27285 ops/ms (36.65 ns/op) | 
+27335 ops/ms (36.58 ns/op) | 
+[ ~27293 ops/ms (36.64 ns/op)]
+
+Last result: 3022.216766
+
+Running: bob
+249150 ops/ms (4.01 ns/op) (warmup) | 
+272120 ops/ms (3.67 ns/op) (warmup) | 
+271680 ops/ms (3.68 ns/op) | 
+272750 ops/ms (3.67 ns/op) | 
+272765 ops/ms (3.67 ns/op) | 
+[ ~272398 ops/ms (3.67 ns/op)]
+
+Last result: 545.548527
+
+Running: joe
+254070 ops/ms (3.94 ns/op) (warmup) | 
+304045 ops/ms (3.29 ns/op) (warmup) | 
+254315 ops/ms (3.93 ns/op) | 
+254880 ops/ms (3.92 ns/op) | 
+255035 ops/ms (3.92 ns/op) | 
+[ ~254743 ops/ms (3.93 ns/op)]
+
+Last result: -916.035521
+
+Running: steve
+286015 ops/ms (3.50 ns/op) (warmup) | 
+352140 ops/ms (2.84 ns/op) (warmup) | 
+305565 ops/ms (3.27 ns/op) | 
+299350 ops/ms (3.34 ns/op) | 
+303815 ops/ms (3.29 ns/op) | 
+[ ~302910 ops/ms (3.30 ns/op)]
+
+Last result: 0.000000
+
+### STARTING FIX 5 ###
+Running: allan
+26655 ops/ms (37.52 ns/op) (warmup) | 
+27245 ops/ms (36.70 ns/op) (warmup) | 
+27285 ops/ms (36.65 ns/op) | 
+27295 ops/ms (36.64 ns/op) | 
+27180 ops/ms (36.79 ns/op) | 
+[ ~27253 ops/ms (36.69 ns/op)]
+
+Last result: 8247.503057
+
+Running: bob
+248810 ops/ms (4.02 ns/op) (warmup) | 
+261175 ops/ms (3.83 ns/op) (warmup) | 
+261885 ops/ms (3.82 ns/op) | 
+261545 ops/ms (3.82 ns/op) | 
+261730 ops/ms (3.82 ns/op) | 
+[ ~261720 ops/ms (3.82 ns/op)]
+
+Last result: 961.611993
+
+Running: joe
+250685 ops/ms (3.99 ns/op) (warmup) | 
+264010 ops/ms (3.79 ns/op) (warmup) | 
+264780 ops/ms (3.78 ns/op) | 
+264205 ops/ms (3.78 ns/op) | 
+264575 ops/ms (3.78 ns/op) | 
+[ ~264520 ops/ms (3.78 ns/op)]
+
+Last result: -658.947390
+
+Running: steve
+291825 ops/ms (3.43 ns/op) (warmup) | 
+305305 ops/ms (3.28 ns/op) (warmup) | 
+305815 ops/ms (3.27 ns/op) | 
+305610 ops/ms (3.27 ns/op) | 
+306090 ops/ms (3.27 ns/op) | 
+[ ~305838 ops/ms (3.27 ns/op)]
+
+Last result: 0.000000
+

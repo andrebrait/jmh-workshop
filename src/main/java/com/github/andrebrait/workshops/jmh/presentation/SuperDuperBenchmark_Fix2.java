@@ -12,7 +12,9 @@ public final class SuperDuperBenchmark_Fix2 {
 
     public static void main(String[] args) {
         //SystemInfoUtils.printSystemInfo();
-        BenchmarkName benchmark = select("Select a benchmark to run:", BenchmarkName.class);
+        BenchmarkName benchmark = args.length == 1 ?
+                BenchmarkName.valueOf(args[0]) :
+                select("Select a benchmark to run:", BenchmarkName.class);
         BenchConsumer<Operands> benchmarkMethod = switch (benchmark) {
             case allan -> o -> Solutions.allan(o.x1(), o.y1(), o.x2(), o.y2());
             case bob -> o -> Solutions.bob(o.x1(), o.y1(), o.x2(), o.y2());

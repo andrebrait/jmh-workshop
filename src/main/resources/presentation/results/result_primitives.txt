@@ -1,0 +1,82 @@
+### STARTING FIX 4 ###
+Running: allan
+27660 ops/ms (36.15 ns/op) (warmup) | 
+27850 ops/ms (35.91 ns/op) (warmup) | 
+27915 ops/ms (35.82 ns/op) | 
+27870 ops/ms (35.88 ns/op) | 
+27950 ops/ms (35.78 ns/op) | 
+[ ~27911 ops/ms (35.83 ns/op)]
+
+Last result: 3737.329157
+
+Running: bob
+877595 ops/ms (1.14 ns/op) (warmup) | 
+632415 ops/ms (1.58 ns/op) (warmup) | 
+604985 ops/ms (1.65 ns/op) | 
+615450 ops/ms (1.62 ns/op) | 
+633455 ops/ms (1.58 ns/op) | 
+[ ~617963 ops/ms (1.62 ns/op)]
+
+Last result: 547.299388
+
+Running: joe
+973925 ops/ms (1.03 ns/op) (warmup) | 
+648890 ops/ms (1.54 ns/op) (warmup) | 
+633240 ops/ms (1.58 ns/op) | 
+645375 ops/ms (1.55 ns/op) | 
+639025 ops/ms (1.56 ns/op) | 
+[ ~639213 ops/ms (1.56 ns/op)]
+
+Last result: 39.241246
+
+Running: steve
+1332905 ops/ms (0.75 ns/op) (warmup) | 
+846765 ops/ms (1.18 ns/op) (warmup) | 
+852230 ops/ms (1.17 ns/op) | 
+852250 ops/ms (1.17 ns/op) | 
+850835 ops/ms (1.18 ns/op) | 
+[ ~851771 ops/ms (1.17 ns/op)]
+
+Last result: 0.000000
+
+### STARTING FIX 5 ###
+Running: allan
+44542890 ops/ms (0.02 ns/op) (warmup) | 
+30747770 ops/ms (0.03 ns/op) (warmup) | 
+30929430 ops/ms (0.03 ns/op) | 
+30810910 ops/ms (0.03 ns/op) | 
+30925460 ops/ms (0.03 ns/op) | 
+[ ~30888600 ops/ms (0.03 ns/op)]
+
+Last result: 5901.556663
+
+Running: bob
+44995315 ops/ms (0.02 ns/op) (warmup) | 
+44921110 ops/ms (0.02 ns/op) (warmup) | 
+44372430 ops/ms (0.02 ns/op) | 
+44561210 ops/ms (0.02 ns/op) | 
+44715315 ops/ms (0.02 ns/op) | 
+[ ~44549651 ops/ms (0.02 ns/op)]
+
+Last result: 237.230405
+
+Running: joe
+44672130 ops/ms (0.02 ns/op) (warmup) | 
+44926295 ops/ms (0.02 ns/op) (warmup) | 
+44582695 ops/ms (0.02 ns/op) | 
+44856010 ops/ms (0.02 ns/op) | 
+44612055 ops/ms (0.02 ns/op) | 
+[ ~44683586 ops/ms (0.02 ns/op)]
+
+Last result: 102.771206
+
+Running: steve
+44831105 ops/ms (0.02 ns/op) (warmup) | 
+45057020 ops/ms (0.02 ns/op) (warmup) | 
+44600370 ops/ms (0.02 ns/op) | 
+44993045 ops/ms (0.02 ns/op) | 
+44889510 ops/ms (0.02 ns/op) | 
+[ ~44827641 ops/ms (0.02 ns/op)]
+
+Last result: 0.000000
+

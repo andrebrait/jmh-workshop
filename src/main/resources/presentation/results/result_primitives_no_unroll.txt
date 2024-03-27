@@ -1,0 +1,189 @@
+### STARTING FIX 1 ###
+Running: allan
+266350 ops/ms (3.75 ns/op) (warmup) | 
+243660 ops/ms (4.10 ns/op) (warmup) | 
+243735 ops/ms (4.10 ns/op) | 
+243480 ops/ms (4.11 ns/op) | 
+245380 ops/ms (4.08 ns/op) | 
+[ ~244198 ops/ms (4.10 ns/op)]
+
+Running: bob
+3029290 ops/ms (0.33 ns/op) (warmup) | 
+3065320 ops/ms (0.33 ns/op) (warmup) | 
+3017180 ops/ms (0.33 ns/op) | 
+3053120 ops/ms (0.33 ns/op) | 
+3057385 ops/ms (0.33 ns/op) | 
+[ ~3042561 ops/ms (0.33 ns/op)]
+
+Running: joe
+3062630 ops/ms (0.33 ns/op) (warmup) | 
+3062515 ops/ms (0.33 ns/op) (warmup) | 
+3044800 ops/ms (0.33 ns/op) | 
+3041045 ops/ms (0.33 ns/op) | 
+3056180 ops/ms (0.33 ns/op) | 
+[ ~3047341 ops/ms (0.33 ns/op)]
+
+Running: steve
+3062020 ops/ms (0.33 ns/op) (warmup) | 
+3061000 ops/ms (0.33 ns/op) (warmup) | 
+3027130 ops/ms (0.33 ns/op) | 
+3052450 ops/ms (0.33 ns/op) | 
+3036785 ops/ms (0.33 ns/op) | 
+[ ~3038788 ops/ms (0.33 ns/op)]
+
+### STARTING FIX 2 ###
+Running: allan
+244180 ops/ms (4.10 ns/op) (warmup) | 
+244820 ops/ms (4.08 ns/op) (warmup) | 
+246425 ops/ms (4.06 ns/op) | 
+246295 ops/ms (4.06 ns/op) | 
+246245 ops/ms (4.06 ns/op) | 
+[ ~246321 ops/ms (4.06 ns/op)]
+
+Running: bob
+3063850 ops/ms (0.33 ns/op) (warmup) | 
+3033520 ops/ms (0.33 ns/op) (warmup) | 
+3029675 ops/ms (0.33 ns/op) | 
+3047300 ops/ms (0.33 ns/op) | 
+3037365 ops/ms (0.33 ns/op) | 
+[ ~3038113 ops/ms (0.33 ns/op)]
+
+Running: joe
+3046695 ops/ms (0.33 ns/op) (warmup) | 
+3055310 ops/ms (0.33 ns/op) (warmup) | 
+3016525 ops/ms (0.33 ns/op) | 
+3038350 ops/ms (0.33 ns/op) | 
+3042755 ops/ms (0.33 ns/op) | 
+[ ~3032543 ops/ms (0.33 ns/op)]
+
+Running: steve
+3063605 ops/ms (0.33 ns/op) (warmup) | 
+3063230 ops/ms (0.33 ns/op) (warmup) | 
+3039780 ops/ms (0.33 ns/op) | 
+3051340 ops/ms (0.33 ns/op) | 
+3054425 ops/ms (0.33 ns/op) | 
+[ ~3048515 ops/ms (0.33 ns/op)]
+
+### STARTING FIX 3 ###
+Running: allan
+245700 ops/ms (4.07 ns/op) (warmup) | 
+237240 ops/ms (4.22 ns/op) (warmup) | 
+233435 ops/ms (4.28 ns/op) | 
+232290 ops/ms (4.30 ns/op) | 
+242525 ops/ms (4.12 ns/op) | 
+[ ~236083 ops/ms (4.24 ns/op)]
+
+Executions: 2382380000
+
+Running: bob
+3038125 ops/ms (0.33 ns/op) (warmup) | 
+3046075 ops/ms (0.33 ns/op) (warmup) | 
+3031825 ops/ms (0.33 ns/op) | 
+3014835 ops/ms (0.33 ns/op) | 
+3023075 ops/ms (0.33 ns/op) | 
+[ ~3023245 ops/ms (0.33 ns/op)]
+
+Executions: 30307870000
+
+Running: joe
+3035875 ops/ms (0.33 ns/op) (warmup) | 
+3046670 ops/ms (0.33 ns/op) (warmup) | 
+2989855 ops/ms (0.33 ns/op) | 
+3032625 ops/ms (0.33 ns/op) | 
+3038075 ops/ms (0.33 ns/op) | 
+[ ~3020185 ops/ms (0.33 ns/op)]
+
+Executions: 30286200000
+
+Running: steve
+3017855 ops/ms (0.33 ns/op) (warmup) | 
+1574385 ops/ms (0.64 ns/op) (warmup) | 
+3040915 ops/ms (0.33 ns/op) | 
+3005880 ops/ms (0.33 ns/op) | 
+3042410 ops/ms (0.33 ns/op) | 
+[ ~3029735 ops/ms (0.33 ns/op)]
+
+Executions: 27362890000
+
+### STARTING FIX 4 ###
+Running: allan
+27035 ops/ms (36.99 ns/op) (warmup) | 
+27330 ops/ms (36.59 ns/op) (warmup) | 
+27415 ops/ms (36.48 ns/op) | 
+27300 ops/ms (36.63 ns/op) | 
+27290 ops/ms (36.64 ns/op) | 
+[ ~27335 ops/ms (36.58 ns/op)]
+
+Last result: 7776.639741
+
+Running: bob
+865855 ops/ms (1.15 ns/op) (warmup) | 
+622260 ops/ms (1.61 ns/op) (warmup) | 
+636700 ops/ms (1.57 ns/op) | 
+617565 ops/ms (1.62 ns/op) | 
+635060 ops/ms (1.57 ns/op) | 
+[ ~629775 ops/ms (1.59 ns/op)]
+
+Last result: 338.701065
+
+Running: joe
+978280 ops/ms (1.02 ns/op) (warmup) | 
+650690 ops/ms (1.54 ns/op) (warmup) | 
+639540 ops/ms (1.56 ns/op) | 
+614625 ops/ms (1.63 ns/op) | 
+646120 ops/ms (1.55 ns/op) | 
+[ ~633428 ops/ms (1.58 ns/op)]
+
+Last result: -40.080117
+
+Running: steve
+1340375 ops/ms (0.75 ns/op) (warmup) | 
+844540 ops/ms (1.18 ns/op) (warmup) | 
+852135 ops/ms (1.17 ns/op) | 
+851495 ops/ms (1.17 ns/op) | 
+852510 ops/ms (1.17 ns/op) | 
+[ ~852046 ops/ms (1.17 ns/op)]
+
+Last result: 0.000000
+
+### STARTING FIX 5 ###
+Running: allan
+27300 ops/ms (36.63 ns/op) (warmup) | 
+27375 ops/ms (36.53 ns/op) (warmup) | 
+27295 ops/ms (36.64 ns/op) | 
+27445 ops/ms (36.44 ns/op) | 
+27335 ops/ms (36.58 ns/op) | 
+[ ~27358 ops/ms (36.55 ns/op)]
+
+Last result: 7542.728368
+
+Running: bob
+3054035 ops/ms (0.33 ns/op) (warmup) | 
+3050590 ops/ms (0.33 ns/op) (warmup) | 
+3063160 ops/ms (0.33 ns/op) | 
+3073080 ops/ms (0.33 ns/op) | 
+3035635 ops/ms (0.33 ns/op) | 
+[ ~3057291 ops/ms (0.33 ns/op)]
+
+Last result: 349.755008
+
+Running: joe
+3056605 ops/ms (0.33 ns/op) (warmup) | 
+3088215 ops/ms (0.32 ns/op) (warmup) | 
+3038205 ops/ms (0.33 ns/op) | 
+3036840 ops/ms (0.33 ns/op) | 
+3018140 ops/ms (0.33 ns/op) | 
+[ ~3031061 ops/ms (0.33 ns/op)]
+
+Last result: -599.305878
+
+Running: steve
+3081590 ops/ms (0.32 ns/op) (warmup) | 
+3088700 ops/ms (0.32 ns/op) (warmup) | 
+3040065 ops/ms (0.33 ns/op) | 
+3050070 ops/ms (0.33 ns/op) | 
+3053885 ops/ms (0.33 ns/op) | 
+[ ~3048006 ops/ms (0.33 ns/op)]
+
+Last result: 0.000000
+
