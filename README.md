@@ -9,3 +9,4 @@ Benchmarks for a workshop in Java benchmarking with the JMH.
   * [The Black Magic of (Java) Method Dispatch](https://shipilev.net/blog/2015/black-magic-method-dispatch/) by Aleksey Shipilëv
   * [JVM Anatomy Quark #16: Megamorphic Virtual Calls](https://shipilev.net/jvm/anatomy-quarks/16-megamorphic-virtual-calls/) by Aleksey Shipilëv
   * [JVM Anatomy Quark #27: Compiler Blackholes](https://shipilev.net/jvm/anatomy-quarks/27-compiler-blackholes/) by Aleksey Shipilëv
+  * [Interface Dispatch](https://lukasatkinson.de/2018/interface-dispatch/) by Lukas Atkinson
