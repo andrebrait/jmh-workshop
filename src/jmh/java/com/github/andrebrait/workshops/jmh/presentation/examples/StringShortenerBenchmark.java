@@ -36,9 +36,6 @@ public class StringShortenerBenchmark {
         )
         private String lastSegment;
 
-        @Param({"100"})
-        private int count;
-
         @Param({"0", "2", "5", "10"})
         private int separators;
 
@@ -49,9 +46,9 @@ public class StringShortenerBenchmark {
         @Setup(Level.Trial)
         public void setup() {
             cache = new ConcurrentHashMap<>();
-            strings = new String[count];
+            strings = new String[100];
             Random random = ThreadLocalRandom.current();
-            for (int i = 0; i < count; i++) {
+            for (int i = 0; i < 100; i++) {
                 StringBuilder sb = new StringBuilder();
                 for (int j = 0; j < separators; j++) {
                     String string = UUID.randomUUID().toString();
