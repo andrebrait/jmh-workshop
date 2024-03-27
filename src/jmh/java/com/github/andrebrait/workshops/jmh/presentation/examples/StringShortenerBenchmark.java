@@ -29,14 +29,12 @@ public class StringShortenerBenchmark {
 
         @Param(
                 {
-                        "MyClass",
-                        "MyClassBuilderFactory",
-                        "MyClassBuilderFactoryFunctionConsumerFactoryObserverListener"
+                        "MyClass", "MyClassListenerBuilderFactory",
                 }
         )
-        private String lastSegment;
+        private String className;
 
-        @Param({"0", "2", "5", "10"})
+        @Param({"0", "5", "10"})
         private int separators;
 
         private String[] strings;
@@ -55,7 +53,7 @@ public class StringShortenerBenchmark {
                     sb.append(string, 0, random.nextInt(3, string.length() + 1));
                     sb.append('.');
                 }
-                sb.append(lastSegment);
+                sb.append(className);
                 strings[i] = sb.toString();
             }
         }
