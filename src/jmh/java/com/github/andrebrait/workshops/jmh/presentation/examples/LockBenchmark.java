@@ -19,6 +19,35 @@ import java.util.concurrent.locks.StampedLock;
  * Benchmarking lock strategies with counter implementations.
  * <p>
  * Inspired by <a href="https://isuru-perera.blogspot.com/2016/05/benchmarking-java-locks-with-counters.html">Benchmarking Java Locks with Counters</a>
+ * <p>
+ * Results:
+ * <pre>
+ * Benchmark                                                    Mode  Cnt       Score        Error   Units
+ * LockBenchmark.Adder                                         thrpt    3  121557.304 ±  25512.272  ops/ms
+ * LockBenchmark.Adder:adder_get                               thrpt    3   30633.722 ±   8274.599  ops/ms
+ * LockBenchmark.Adder:adder_inc                               thrpt    3   90923.582 ±  19563.731  ops/ms
+ * LockBenchmark.Atomic                                        thrpt    3  612552.270 ± 556332.813  ops/ms
+ * LockBenchmark.Atomic:atomic_get                             thrpt    3  595654.409 ± 564094.012  ops/ms
+ * LockBenchmark.Atomic:atomic_inc                             thrpt    3   16897.861 ±  10273.992  ops/ms
+ * LockBenchmark.RWLockFair                                    thrpt    3     515.374 ±    140.314  ops/ms
+ * LockBenchmark.RWLockFair:rw_lock_fair_get                   thrpt    3     257.677 ±     69.997  ops/ms
+ * LockBenchmark.RWLockFair:rw_lock_fair_inc                   thrpt    3     257.697 ±     70.317  ops/ms
+ * LockBenchmark.RWLockNonFair                                 thrpt    3   32014.531 ±   9355.368  ops/ms
+ * LockBenchmark.RWLockNonFair:rw_lock_get                     thrpt    3    8076.279 ±   2354.169  ops/ms
+ * LockBenchmark.RWLockNonFair:rw_lock_inc                     thrpt    3   23938.252 ±   7066.754  ops/ms
+ * LockBenchmark.StampedLock                                   thrpt    3   50515.021 ±  34515.501  ops/ms
+ * LockBenchmark.StampedLock:stamped_get                       thrpt    3   11855.643 ±   7152.522  ops/ms
+ * LockBenchmark.StampedLock:stamped_inc                       thrpt    3   38659.379 ±  32476.617  ops/ms
+ * LockBenchmark.StampedLockOptimistic                         thrpt    3  386914.358 ± 196547.711  ops/ms
+ * LockBenchmark.StampedLockOptimistic:stamped_optimistic_get  thrpt    3  359210.852 ± 193587.094  ops/ms
+ * LockBenchmark.StampedLockOptimistic:stamped_optimistic_inc  thrpt    3   27703.506 ±   6640.446  ops/ms
+ * LockBenchmark.Synchronized                                  thrpt    3   27420.127 ±   3851.113  ops/ms
+ * LockBenchmark.Synchronized:synchronized_get                 thrpt    3   10818.018 ±   1123.696  ops/ms
+ * LockBenchmark.Synchronized:synchronized_inc                 thrpt    3   16602.109 ±   4641.771  ops/ms
+ * LockBenchmark.Volatile                                      thrpt    3  753812.569 ± 952572.577  ops/ms
+ * LockBenchmark.Volatile:volatile_get                         thrpt    3  726596.444 ± 956115.823  ops/ms
+ * LockBenchmark.Volatile:volatile_inc                         thrpt    3   27216.125 ±   9898.125  ops/ms
+ * </pre>
  */
 @BenchmarkMode(Mode.Throughput)
 @Warmup(iterations = 2, time = 2)

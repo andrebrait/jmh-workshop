@@ -9,7 +9,18 @@ import org.openjdk.jmh.runner.options.OptionsBuilder;
 
 import java.util.concurrent.TimeUnit;
 
-
+/**
+ * A JMH equivalent of the Super Duper Benchmark!
+ * <p>
+ * Results:
+ * <pre>
+ * Benchmark                       Mode  Cnt        Score         Error   Units
+ * SuperDuperBenchmark_JMH.allan  thrpt    3    28039.465 ±     119.873  ops/ms
+ * SuperDuperBenchmark_JMH.bob    thrpt    3   996627.931 ± 1131515.265  ops/ms
+ * SuperDuperBenchmark_JMH.joe    thrpt    3  1135069.323 ±  219898.808  ops/ms
+ * SuperDuperBenchmark_JMH.steve  thrpt    3  1760845.935 ±   93624.394  ops/ms
+ * </pre>
+ */
 @BenchmarkMode(Mode.Throughput)
 @Warmup(iterations = 2, time = 2)
 @Measurement(iterations = 3, time = 2)
@@ -21,7 +32,8 @@ public class SuperDuperBenchmark_JMH {
     public static class BenchmarkArguments {
         private Operands operands;
 
-        @Setup
+        // Using Level.Trial here causes bob and joe to be optimized away
+        @Setup(Level.Iteration)
         public void setup() {
             operands = Operands.random();
         }
@@ -46,9 +58,9 @@ public class SuperDuperBenchmark_JMH {
     }
 
     @Benchmark
-    public void steve(Blackhole blackhole, BenchmarkArguments args) {
+    public double steve(BenchmarkArguments args) {
         Operands o = args.operands;
-        blackhole.consume(Solutions.steve(o.x1(), o.y1(), o.x2(), o.y2()));
+        return Solutions.steve(o.x1(), o.y1(), o.x2(), o.y2());
     }
 
     public static void main(String[] args) throws RunnerException {

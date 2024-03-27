@@ -26,7 +26,7 @@ public final class Solutions {
     }
 
     public static double joe(double x1, double y1, double x2, double y2) {
-        return (x1 - x2) + (y1 - y2);
+        return (x2 - x1) + (y2 - y1);
     }
 
     public static double steve(double x1, double y1, double x2, double y2) {

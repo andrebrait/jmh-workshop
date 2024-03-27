@@ -10,8 +10,19 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * A benchmark to illustrate the effects of megamorphic method dispatching.
- *
- * <p>Reference: <a href="https://shipilev.net/jvm/anatomy-quarks/16-megamorphic-virtual-calls/">JVM Anatomy Quark #16</a>
+ * <p>
+ * Reference: <a href="https://shipilev.net/jvm/anatomy-quarks/16-megamorphic-virtual-calls/">JVM Anatomy Quark #16</a>
+ * <p>
+ * Result:
+ * <pre>
+ * Benchmark                              (mode)  Mode  Cnt     Score     Error  Units
+ * VirtualCallBenchmark.test_compiled       mono  avgt    3   121.812 ±   6.124  ns/op
+ * VirtualCallBenchmark.test_compiled         bi  avgt    3   177.673 ±  35.827  ns/op
+ * VirtualCallBenchmark.test_compiled       mega  avgt    3   862.371 ± 398.556  ns/op
+ * VirtualCallBenchmark.test_interpreted    mono  avgt    3  5918.139 ±  11.641  ns/op
+ * VirtualCallBenchmark.test_interpreted      bi  avgt    3  5601.312 ±  18.450  ns/op
+ * VirtualCallBenchmark.test_interpreted    mega  avgt    3  5230.826 ±  83.587  ns/op
+ * </pre>
  */
 @BenchmarkMode(Mode.AverageTime)
 @Warmup(iterations = 2, time = 2)
