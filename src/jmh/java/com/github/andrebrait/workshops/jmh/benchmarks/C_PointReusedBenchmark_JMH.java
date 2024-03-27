@@ -29,7 +29,7 @@ public class C_PointReusedBenchmark_JMH {
         private Point a;
         private Point b;
 
-        @Setup
+        @Setup(Level.Trial)
         public void setup() {
             Random random = ThreadLocalRandom.current();
             int x1 = random.nextInt(100);

@@ -23,7 +23,7 @@ public class A_RawMethodBenchmark_JMH {
     public static class Operands {
         private double x1, y1, x2, y2;
 
-        @Setup
+        @Setup(Level.Trial)
         public void setup() {
             Random random = ThreadLocalRandom.current();
             x1 = random.nextDouble(100);
@@ -47,7 +47,6 @@ public class A_RawMethodBenchmark_JMH {
     public void distance(Blackhole blackhole, Operands operands) {
         blackhole.consume(distance(operands.x1, operands.y1, operands.x2, operands.y2));
     }
-
 
     @Benchmark
     public void constant(Blackhole blackhole, Operands operands) {

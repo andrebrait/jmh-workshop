@@ -24,7 +24,7 @@ public class B_PointBenchmark_JMH {
     public static class Operands {
         private int x1, y1, x2, y2;
 
-        @Setup
+        @Setup(Level.Trial)
         public void setup() {
             Random random = ThreadLocalRandom.current();
             x1 = random.nextInt(200);

@@ -23,7 +23,7 @@ import java.util.concurrent.TimeUnit;
  * VirtualCallBenchmark.test_interpreted      bi  avgt    3  5601.312 ±  18.450  ns/op
  * VirtualCallBenchmark.test_interpreted    mega  avgt    3  5230.826 ±  83.587  ns/op
  * </pre>
- *
+ * <p>
  * Results (Windows x86-64):
  * <pre>
  * Benchmark                              (mode)  Mode  Cnt     Score      Error  Units
@@ -43,48 +43,48 @@ import java.util.concurrent.TimeUnit;
 @State(Scope.Benchmark)
 public class VirtualCallBenchmark {
 
-    static abstract class A {
-        long c1, c2, c3;
+    private static abstract class A {
+        protected long c1, c2, c3;
 
         public abstract void m();
     }
 
-    static class C1 extends A {
+    private static class C1 extends A {
 
         public void m() {
             c1++;
         }
     }
 
-    static class C2 extends A {
+    private static class C2 extends A {
 
         public void m() {
             c2++;
         }
     }
 
-    static class C3 extends A {
+    private static class C3 extends A {
 
         public void m() {
             c3++;
         }
     }
 
-    A[] as;
+    private A[] as;
 
     // monomorphic, bimorphic and megamorphic method dispatching
     @Param({"mono", "bi", "mega"})
     private String mode;
 
-    @Setup
+    @Setup(Level.Trial)
     public void setup() {
         as = new A[300];
         boolean bi = "bi".equals(mode);
         boolean mega = "mega".equals(mode);
         for (int c = 0; c < 300; c += 3) {
             as[c] = new C1();
-            as[c + 1] = mega || bi ? new C2() : new C1();
-            as[c + 2] = mega ? new C3() : new C1();
+            as[c + 1] = mega ? new C2() : new C1();
+            as[c + 2] = mega || bi ? new C3() : new C1();
         }
     }
 
