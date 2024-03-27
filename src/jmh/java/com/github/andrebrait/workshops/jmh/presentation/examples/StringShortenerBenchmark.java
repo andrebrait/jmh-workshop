@@ -125,7 +125,7 @@ import java.util.concurrent.TimeUnit;
  * StringShortenerBenchmark.shorten_split_cached:gc.alloc.rate.norm  MyClassListenerBuilderFactory            10  avgt    3      ≈ 10⁻⁴               B/op
  * StringShortenerBenchmark.shorten_split_cached:gc.count            MyClassListenerBuilderFactory            10  avgt    3         ≈ 0             counts
  * </pre>
- *
+ * <p>
  * Important parts (macOS ARM64):
  * <pre>
  * Benchmark                                                                           (className)  (separators)  Mode  Cnt       Score      Error   Units
@@ -142,7 +142,7 @@ import java.util.concurrent.TimeUnit;
  * StringShortenerBenchmark.shorten_split:gc.alloc.rate.norm         MyClassListenerBuilderFactory            10  avgt    3  109576.006 ±    0.004    B/op
  * StringShortenerBenchmark.shorten_split:gc.time                    MyClassListenerBuilderFactory            10  avgt    3      40.000                 ms
  * </pre>
- *
+ * <p>
  * Results (Windows x86-64):
  * <pre>
  * Benchmark                                                                           (className)  (separators)  Mode  Cnt       Score      Error   Units
@@ -212,7 +212,7 @@ import java.util.concurrent.TimeUnit;
  * StringShortenerBenchmark.shorten_split_cached:gc.alloc.rate.norm  MyClassListenerBuilderFactory            10  avgt    3      ≈ 10⁻⁴               B/op
  * StringShortenerBenchmark.shorten_split_cached:gc.count            MyClassListenerBuilderFactory            10  avgt    3         ≈ 0             counts
  * </pre>
- *
+ * <p>
  * Important parts (Windows x86-64):
  * <pre>
  * Benchmark                                                                           (className)  (separators)  Mode  Cnt       Score      Error   Units
@@ -240,11 +240,7 @@ public class StringShortenerBenchmark {
     @State(Scope.Benchmark)
     public static class ShortenerState {
 
-        @Param(
-                {
-                        "MyClass", "MyClassListenerBuilderFactory",
-                }
-        )
+        @Param({"MyClass", "MyClassListenerBuilderFactory"})
         private String className;
 
         @Param({"0", "5", "10"})
