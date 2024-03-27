@@ -7,7 +7,6 @@ import org.openjdk.jmh.runner.options.Options;
 import org.openjdk.jmh.runner.options.OptionsBuilder;
 
 import java.util.concurrent.TimeUnit;
-import java.util.regex.Pattern;
 
 /**
  * A benchmark to illustrate the effects of megamorphic method dispatching.
@@ -84,7 +83,7 @@ public class VirtualCallBenchmark {
     }
 
     public static void main(String[] args) throws RunnerException {
-        String regex = "^%s\\..*".formatted(Pattern.quote(VirtualCallBenchmark.class.getName()));
+        String regex = "^\\Q%s.\\E.*".formatted(VirtualCallBenchmark.class.getName());
         Options options = new OptionsBuilder()
                 //.jvmArgsAppend("-Djmh.blackhole.mode=COMPILER")
                 //.addProfiler("gc")

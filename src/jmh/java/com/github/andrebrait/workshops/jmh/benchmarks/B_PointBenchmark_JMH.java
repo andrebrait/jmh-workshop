@@ -11,7 +11,6 @@ import org.openjdk.jmh.runner.options.OptionsBuilder;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.TimeUnit;
-import java.util.regex.Pattern;
 
 
 @BenchmarkMode(Mode.Throughput)
@@ -64,7 +63,7 @@ public class B_PointBenchmark_JMH {
     }
 
     public static void main(String[] args) throws RunnerException {
-        String regex = "^%s\\..*".formatted(Pattern.quote(B_PointBenchmark_JMH.class.getName()));
+        String regex = "^\\Q%s.\\E.*".formatted(B_PointBenchmark_JMH.class.getName());
         Options options = new OptionsBuilder()
                 //.jvmArgsAppend("-Djmh.blackhole.mode=COMPILER")
                 //.addProfiler("gc")
