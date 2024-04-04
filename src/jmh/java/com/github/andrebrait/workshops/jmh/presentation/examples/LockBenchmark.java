@@ -336,10 +336,8 @@ public class LockBenchmark {
 
         public long get() {
             long stamp = lock.tryOptimisticRead();
-            long currentCount;
-            if (lock.validate(stamp)) {
-                currentCount = counter;
-            } else {
+            long currentCount = counter;
+            if (!lock.validate(stamp)) {
                 stamp = lock.readLock();
                 try {
                     currentCount = counter;
