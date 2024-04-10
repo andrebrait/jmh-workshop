@@ -15,7 +15,7 @@ import java.util.function.Consumer;
 public final class BenchmarkFramework {
 
     public static final long RUN_MILLIS = 2000;
-    public static final int REPEAT = 3;
+    public static final int REPEAT = 2;
     public static final int WARMUP = 2;
     public static final int LOOP = 10_000;
 

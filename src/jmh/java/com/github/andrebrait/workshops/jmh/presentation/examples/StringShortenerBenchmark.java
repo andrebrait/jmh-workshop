@@ -237,6 +237,8 @@ import java.util.concurrent.TimeUnit;
 @Fork(1)
 public class StringShortenerBenchmark {
 
+    com.java.isso.aquilo.bla.ble.bli.MinhaClass -> c.j.u.a.b.b.b.MinhaClasse
+
     @State(Scope.Benchmark)
     public static class ShortenerState {
 
@@ -276,6 +278,7 @@ public class StringShortenerBenchmark {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < split.length - 1; i++) {
             sb.append(split[i], 0, 1);
+            sb.append('.');
         }
         sb.append(split[split.length - 1]);
         return sb.toString();
