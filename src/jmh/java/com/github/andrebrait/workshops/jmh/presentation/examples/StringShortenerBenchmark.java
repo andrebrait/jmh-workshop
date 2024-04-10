@@ -237,7 +237,7 @@ import java.util.concurrent.TimeUnit;
 @Fork(1)
 public class StringShortenerBenchmark {
 
-    com.java.isso.aquilo.bla.ble.bli.MinhaClass -> c.j.u.a.b.b.b.MinhaClasse
+    // com.java.info.avocado.bla.ble.bli.MyClass -> c.j.u.a.b.b.b.MyClass
 
     @State(Scope.Benchmark)
     public static class ShortenerState {
